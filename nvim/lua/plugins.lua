@@ -12,21 +12,28 @@ if not vim.loop.fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 
--- Check if firenvim is active
-local firenvim_not_active = function()
-    return not vim.g.started_by_firenvim
-end
-
 -- Lazy load plugins
 require("lazy").setup {
 
-    -- Nord
+    -- Tokyonight
+    -- {
+    --     "folke/tokyonight.nvim",
+    --     lazy = false, -- load immediately
+    --     priority = 0, -- load as early as possible
+    --     config = function()
+    --         require("config.tokyonight")
+    --         vim.cmd([[colorscheme tokyonight]])
+    --     end,
+    -- },
+
+    -- OneNord
     {
-        "shaunsingh/nord.nvim",
+        "rmehri01/onenord.nvim",
         lazy = false, -- load immediately
         priority = 0, -- load as early as possible
         config = function()
-            vim.cmd([[colorscheme nord]])
+            require("config.onenord")
+            vim.cmd([[colorscheme onenord]])
         end,
     },
 
@@ -79,7 +86,6 @@ require("lazy").setup {
     --TeleScope
     {
         "nvim-telescope/telescope.nvim", branch = "0.1.x",
-        
         cmd = "Telescope",
         dependencies = {
             {'nvim-lua/plenary.nvim'},
@@ -96,7 +102,6 @@ require("lazy").setup {
     {
         "nvim-lualine/lualine.nvim",
         event = "VeryLazy",
-        cond = firenvim_not_active,
         config = function()
             require("config.lualine")
         end,
@@ -115,7 +120,6 @@ require("lazy").setup {
     -- fancy start screen
     {
         "nvimdev/dashboard-nvim",
-        cond = firenvim_not_active,
         config = function()
             require("config.dashboard-nvim")
         end,
@@ -125,12 +129,56 @@ require("lazy").setup {
     -- In-line diagnostics
     {
         "folke/trouble.nvim",
-	cmd = "Trouble",
+	    cmd = "Trouble",
         config = function()
             require("config.trouble")
         end,
         dependencies = { "nvim-tree/nvim-web-devicons" },
     },
+
+    -- Highlighter for todo's
+    {
+        "folke/todo-comments.nvim",
+        dependencies = { "nvim-lua/plenary.nvim" },
+        config = function()
+            require("config.todo-comments")
+        end,
+    },
+
+    -- Tmux better movements
+    {
+        "christoomey/vim-tmux-navigator",
+        lazy = false,
+    },
+
+    -- Show indentation levels
+    {
+        "lukas-reineke/indent-blankline.nvim",
+        event = "BufRead",
+        config = function()
+            require("config.indent")
+        end,
+    },
+
+    -- Pandoc
+    { "vim-pandoc/vim-pandoc" },
+    { "vim-pandoc/vim-pandoc-syntax" },
+
+    -- Markdown
+
+    { "iamcco/markdown-preview.nvim" },
+
+    -- Paint for better markdown headers
+    {
+        "folke/paint.nvim",
+        event = "BufRead",
+        config = function()
+            require("config.paint")
+        end,
+    },
+
+    -- Quick file switcher
+    { "theprimeagen/harpoon" },
 
     -- Modern matchit implementation
     { "andymass/vim-matchup", event = "BufRead" },
@@ -149,13 +197,5 @@ require("lazy").setup {
 
     -- The missing auto-completion for cmdline!
     { "gelguy/wilder.nvim" },
-
-    -- pop-up terminal
-    {
-        "akinsho/toggleterm.nvim",
-        keys = { "<C-j>" },
-        config = function()
-            require("config.toggleterm")
-        end,
-    },
 }
+
