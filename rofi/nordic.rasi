@@ -1,0 +1,90 @@
+* {
+    background:                     #2e3440ff;
+    background-alt:                 #3b4252ff;
+    foreground:                     #e5e9f0cc;
+    border:               			#8fbcbbff;
+    border-alt:               		#81a1c1ff;
+    selected:               		#3b4252ff;
+    urgent:                         #bf616aFF;
+}
+
+window {
+    border:             3px;
+    border-color:       @bg-alt;
+	border-radius:      7px;
+	width:			    50%;
+	padding: 			32px;
+}
+
+prompt {
+	background-color:	@bg-alt;
+	enabled:			true;
+	padding:			0.5% 32px 0% -0.5%;
+	font:				"monospace 10";
+}
+
+entry {
+    placeholder:		"Search";
+	background-color:   @bg-alt;
+    placeholder-color:  @fg;
+    expand:             true;
+    padding:            0.15% 0% 0% 0%;
+}
+
+inputbar {
+	children:			[ prompt, entry ];
+    background-color:   @bg-alt;
+    border:             0 5px solid 0 5px solid;
+    border-color:       @accent;
+    expand:             false;
+    border-radius:      6px;
+    margin:             0%;
+    padding:            10px;
+}
+
+listview {
+    columns:    5;
+    lines:	    3;
+    cycle:      false;
+    dynamic:    true;
+    layout:     vertical;
+}
+
+mainbox {
+    children:   [ inputbar, listview ];
+    spacing:    2%;
+    padding:    2% 1% 2% 1%;
+}
+
+element {
+    background-color:   @bg-alt;
+    border:             5px solid 0 5px solid 0;
+    border-color:       @accent-alt;
+    orientation:        vertical;
+    padding:            2% 0% 2% 0%;
+    margin:             12px;
+}
+
+element-icon {
+    size:               48px;
+    horizontal-align:   0.5;
+}
+
+element-text {
+    expand:             true;
+    horizontal-align:   0.5;
+    vertical-align:     0.5;
+    margin:             0.5% 0.5% -0.5% 0.5%;
+}
+
+element-text, element-icon {
+	background-color:	inherit;
+	text-color:			inherit;
+}
+
+element selected {
+    background-color:   @button;
+    border:             5px solid 0 5px solid 0;
+    border-color:       @accent;
+    border-radius:      6px;
+}
