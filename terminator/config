@@ -16,7 +16,6 @@
     scrollbar_position = hidden
     palette = "#32344a:#f7768e:#9ece6a:#e0af68:#7aa2f7:#ad8ee6:#449dab:#787c99:#444b6a:#ff7a93:#b9f27c:#ff9e64:#7da6ff:#bb9af7:#0db9d7:#acb0d0"
     use_custom_command = True
-    custom_command = /home/paytonwebber/.nix-profile/bin/fish
     use_system_font = False
 [layouts]
   [[default]]
@@ -28,22 +27,4 @@
       parent = window0
       profile = default
       command = tmux a
-  [[New Layout]]
-    [[[child0]]]
-      type = Window
-      parent = ""
-      order = 0
-      position = 559:258
-      maximised = False
-      fullscreen = False
-      size = 802, 595
-      title = /bin/bash
-      last_active_term = 21e621cc-0669-4347-af24-bd7e339781cf
-      last_active_window = True
-    [[[terminal1]]]
-      type = Terminal
-      parent = child0
-      order = 0
-      profile = default
-      uuid = 21e621cc-0669-4347-af24-bd7e339781cf
 [plugins]
