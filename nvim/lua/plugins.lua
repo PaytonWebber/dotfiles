@@ -16,26 +16,26 @@ vim.opt.rtp:prepend(lazypath)
 require("lazy").setup {
 
     -- Tokyonight
-    -- {
-    --     "folke/tokyonight.nvim",
-    --     lazy = false, -- load immediately
-    --     priority = 0, -- load as early as possible
-    --     config = function()
-    --         require("config.tokyonight")
-    --         vim.cmd([[colorscheme tokyonight]])
-    --     end,
-    -- },
-
-    -- OneNord
     {
-        "rmehri01/onenord.nvim",
+        "folke/tokyonight.nvim",
         lazy = false, -- load immediately
         priority = 0, -- load as early as possible
         config = function()
-            require("config.onenord")
-            vim.cmd([[colorscheme onenord]])
+            require("config.tokyonight")
+            vim.cmd([[colorscheme tokyonight]])
         end,
     },
+
+    -- OneNord
+    -- {
+    --     "rmehri01/onenord.nvim",
+    --     lazy = false, -- load immediately
+    --     priority = 0, -- load as early as possible
+    --     config = function()
+    --         require("config.onenord")
+    --         vim.cmd([[colorscheme onenord]])
+    --     end,
+    -- },
 
     -- CoPilot
     {
@@ -130,10 +130,10 @@ require("lazy").setup {
     {
         "folke/trouble.nvim",
 	    cmd = "Trouble",
-        config = function()
-            require("config.trouble")
-        end,
         dependencies = { "nvim-tree/nvim-web-devicons" },
+        opts = {
+            icons = true,
+        },
     },
 
     -- Highlighter for todo's
@@ -161,30 +161,27 @@ require("lazy").setup {
     },
 
     -- Pandoc
-    { "vim-pandoc/vim-pandoc" },
-    { "vim-pandoc/vim-pandoc-syntax" },
+    -- { "vim-pandoc/vim-pandoc" },
+    -- { "vim-pandoc/vim-pandoc-syntax" },
 
     -- Markdown
 
-    { "iamcco/markdown-preview.nvim" },
+    -- { "iamcco/markdown-preview.nvim" },
 
     -- Paint for better markdown headers
-    {
-        "folke/paint.nvim",
-        event = "BufRead",
-        config = function()
-            require("config.paint")
-        end,
-    },
+    -- {
+    --     "folke/paint.nvim",
+    --     event = "BufRead",
+    --     config = function()
+    --         require("config.paint")
+    --     end,
+    -- },
 
     -- Quick file switcher
     { "theprimeagen/harpoon" },
 
     -- Modern matchit implementation
     { "andymass/vim-matchup", event = "BufRead" },
-
-    -- Auto format tools
-    { "sbdchd/neoformat", cmd = { "Neoformat" } },
 
     -- better UI for some nvim actions
     { "stevearc/dressing.nvim" },

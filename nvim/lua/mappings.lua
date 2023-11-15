@@ -1,6 +1,9 @@
+-- Vim mappings
 vim.g.mapleader = " "
 vim.keymap.set("n", "<leader>h", ":nohlsearch<CR>", { noremap = true, silent = true })
 vim.keymap.set("v", "<leader>y", '"+y', { noremap = true, silent = true })
+vim.keymap.set("n", "<C-u>", "<C-u>zz", { noremap = true, silent = true })
+vim.keymap.set("n", "<C-d>", "<C-d>zz", { noremap = true, silent = true })
 
 -- Telescope
 local builtin = require('telescope.builtin')

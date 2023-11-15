@@ -1,6 +1,6 @@
 require("lualine").setup {
     options = {
-        theme = "nord",
+        theme = "tokyonight",
         icons_enabled = true
     },
     sections = {
