@@ -15,14 +15,27 @@ vim.opt.rtp:prepend(lazypath)
 -- Lazy load plugins
 require("lazy").setup {
 
+    ---------------------- THEMES -----------------------
+
     -- Tokyonight
+    -- {
+    --     "folke/tokyonight.nvim",
+    --     lazy = false, -- load immediately
+    --     priority = 1000, -- load as early as possible
+    --     config = function()
+    --         require("config.tokyonight")
+    --         vim.cmd([[colorscheme tokyonight]])
+    --     end,
+    -- },
+    
+    -- Catppuccin
     {
-        "folke/tokyonight.nvim",
+        "catppuccin/nvim",
         lazy = false, -- load immediately
-        priority = 0, -- load as early as possible
+        priority = 1000, -- load as early as possible
         config = function()
-            require("config.tokyonight")
-            vim.cmd([[colorscheme tokyonight]])
+            require("config.catppuccin")
+            vim.cmd([[colorscheme catppuccin]])
         end,
     },
 
@@ -30,44 +43,126 @@ require("lazy").setup {
     -- {
     --     "rmehri01/onenord.nvim",
     --     lazy = false, -- load immediately
-    --     priority = 0, -- load as early as possible
+    --     priority = 1000, -- load as early as possible
     --     config = function()
     --         require("config.onenord")
     --         vim.cmd([[colorscheme onenord]])
     --     end,
     -- },
+    
+    -- Everforest
+    -- {
+    --     "neanias/everforest-nvim",
+    --     lazy = false, -- load immediately
+    --     priority = 1000, -- load as early as possible
+    --     config = function()
+    --         -- require("config.everforest")
+    --         vim.cmd([[colorscheme everforest]])
+    --     end,
+    -- },
 
-    -- CoPilot
+    -- Dracula
+    -- {
+    --     "Mofiqul/dracula.nvim",
+    --     lazy = false, -- load immediately
+    --     priority = 1000, -- load as early as possible
+    --     config = function()
+    --         -- require("config.dracula")
+    --         vim.cmd([[colorscheme dracula]])
+    --     end,
+    -- },
+
+    ------------------------------------------------------
+    
+    -- CoPilot built with Lua
     {
-        "github/copilot.vim",
+        "zbirenbaum/copilot.lua",
+        cmd = "Copilot",
+        event = "InsertEnter",
+        config = function()
+            require("copilot").setup({})
+        end,
+    },
+
+    {
+        'VonHeikemen/lsp-zero.nvim',
+        branch = 'v3.x',
+        lazy = true,
+        config = false,
+        init = function()
+            -- Disable automatic setup, we are doing it manually
+            vim.g.lsp_zero_extend_cmp = 0
+            vim.g.lsp_zero_extend_lspconfig = 0
+        end,
+    },
+    {
+        'williamboman/mason.nvim',
+        lazy = false,
+        config = true,
+    },
+
+    -- Autocompletion
+    {
+        'hrsh7th/nvim-cmp',
+        event = 'InsertEnter',
+        dependencies = {
+            {'L3MON4D3/LuaSnip'},
+        },
+        config = function()
+            -- Here is where you configure the autocompletion settings.
+            local lsp_zero = require('lsp-zero')
+            lsp_zero.extend_cmp()
+
+            -- And you can configure cmp even more, if you want to.
+            local cmp = require('cmp')
+            local cmp_action = lsp_zero.cmp_action()
+
+            cmp.setup({
+                formatting = lsp_zero.cmp_format(),
+                mapping = cmp.mapping.preset.insert({
+                    ['<C-Space>'] = cmp.mapping.complete(),
+                    ['<C-u>'] = cmp.mapping.scroll_docs(-4),
+                    ['<C-d>'] = cmp.mapping.scroll_docs(4),
+                    ['<C-f>'] = cmp_action.luasnip_jump_forward(),
+                    ['<C-b>'] = cmp_action.luasnip_jump_backward(),
+                })
+            })
+        end
     },
 
     -- LSP
     {
-        "VonHeikemen/lsp-zero.nvim",
-
+        'neovim/nvim-lspconfig',
+        cmd = {'LspInfo', 'LspInstall', 'LspStart'},
+        event = {'BufReadPre', 'BufNewFile'},
         dependencies = {
-            -- LSP Support
-            {'neovim/nvim-lspconfig'},
-            {'williamboman/mason.nvim'},
-            {'williamboman/mason-lspconfig.nvim'},
-
-            -- Autocompletion
-            {'hrsh7th/nvim-cmp'},
-            {'hrsh7th/cmp-buffer'},
-            {'hrsh7th/cmp-path'},
-            {'saadparwaiz1/cmp_luasnip'},
             {'hrsh7th/cmp-nvim-lsp'},
-            {'hrsh7th/cmp-nvim-lua'},
-
-            -- Snippets
-            {'L3MON4D3/LuaSnip'},
-            {'rafamadriz/friendly-snippets'},
+            {'williamboman/mason-lspconfig.nvim'},
         },
         config = function()
-            require("config.lsp")
+            -- This is where all the LSP shenanigans will live
+            local lsp_zero = require('lsp-zero')
+            lsp_zero.extend_lspconfig()
+
+            lsp_zero.on_attach(function(client, bufnr)
+                -- see :help lsp-zero-keybindings
+                -- to learn the available actions
+                lsp_zero.default_keymaps({buffer = bufnr})
+            end)
+
+            require('mason-lspconfig').setup({
+                ensure_installed = {},
+                handlers = {
+                    lsp_zero.default_setup,
+                    lua_ls = function()
+                        -- (Optional) Configure lua language server for neovim
+                        local lua_opts = lsp_zero.nvim_lua_ls()
+                        require('lspconfig').lua_ls.setup(lua_opts)
+                    end,
+                }
+            })
         end,
-    },
+  },
 
     -- Treesitter
     {
@@ -81,7 +176,7 @@ require("lazy").setup {
 
     { "nvim-treesitter/playground", event = "BufRead" },
 
-    { "nvim-treesitter/nvim-treesitter-context", event = "BufRead" },
+    -- { "nvim-treesitter/nvim-treesitter-context", event = "BufRead" },
 
     --TeleScope
     {
@@ -107,7 +202,7 @@ require("lazy").setup {
         end,
     },
 
-    -- file explorer
+    -- File explorer
     {
         "nvim-tree/nvim-tree.lua",
         keys = { "<space>s" },
@@ -117,7 +212,7 @@ require("lazy").setup {
         end,
     },
 
-    -- fancy start screen
+    -- Fancy start screen
     {
         "nvimdev/dashboard-nvim",
         config = function()
@@ -160,6 +255,42 @@ require("lazy").setup {
         end,
     },
 
+    -- Better vim motions
+    {
+        "folke/flash.nvim",
+        event = "VeryLazy",
+        keys = {
+            { "s", mode = { "n", "x", "o" }, function() require("flash").jump() end, desc = "Flash" },
+            { "S", mode = { "n", "x", "o" }, function() require("flash").treesitter() end, desc = "Flash Treesitter" },
+            { "R", mode = { "o", "x" }, function() require("flash").treesitter_search() end, desc = "Treesitter Search" },
+        },
+    },
+
+    -- Easy renaming plugin
+    {
+        "smjonas/inc-rename.nvim",
+        cmd = "IncRename",
+        config = true,
+    },
+
+    -- Quick file switcher
+    { "theprimeagen/harpoon" },
+
+    -- Modern matchit implementation
+    { "andymass/vim-matchup", event = "BufRead" },
+
+    -- Better UI for some nvim actions
+    { "stevearc/dressing.nvim" },
+
+    -- Comment plugin
+    { "tpope/vim-commentary", event = "VeryLazy" },
+
+    -- Automatic insertion and deletion of a pair of characters
+    { "Raimondi/delimitMate", event = "InsertEnter" },
+
+    -- The missing auto-completion for cmdline!
+    { "gelguy/wilder.nvim" },
+
     -- Pandoc
     -- { "vim-pandoc/vim-pandoc" },
     -- { "vim-pandoc/vim-pandoc-syntax" },
@@ -177,22 +308,5 @@ require("lazy").setup {
     --     end,
     -- },
 
-    -- Quick file switcher
-    { "theprimeagen/harpoon" },
-
-    -- Modern matchit implementation
-    { "andymass/vim-matchup", event = "BufRead" },
-
-    -- better UI for some nvim actions
-    { "stevearc/dressing.nvim" },
-
-    -- comment plugin
-    { "tpope/vim-commentary", event = "VeryLazy" },
-
-    -- Automatic insertion and deletion of a pair of characters
-    { "Raimondi/delimitMate", event = "InsertEnter" },
-
-    -- The missing auto-completion for cmdline!
-    { "gelguy/wilder.nvim" },
 }
 
