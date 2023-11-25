@@ -75,14 +75,16 @@ require("lazy").setup {
     ------------------------------------------------------
     
     -- CoPilot built with Lua
-    {
-        "zbirenbaum/copilot.lua",
-        cmd = "Copilot",
-        event = "InsertEnter",
-        config = function()
-            require("copilot").setup({})
-        end,
-    },
+    -- {
+    --     "zbirenbaum/copilot.lua",
+    --     cmd = "Copilot",
+    --     event = "InsertEnter",
+    --     config = function()
+    --         require("copilot").setup({})
+    --     end,
+    -- },
+    
+    { "github/copilot.vim" },
 
     {
         'VonHeikemen/lsp-zero.nvim',
