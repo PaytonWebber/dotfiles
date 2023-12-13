@@ -1,3 +1,3 @@
 require("catppuccin").setup({
-    flavour = "frappe", -- latte, frappe, macchiato, mocha
+	flavour = "macchiato", -- latte, frappe, macchiato, mocha
 })
