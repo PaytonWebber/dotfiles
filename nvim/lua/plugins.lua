@@ -217,7 +217,7 @@ require("lazy").setup({
 
 	{
 		"echasnovski/mini.files",
-		version = "*",
+		version = false,
 		config = function()
 			require("config.mini-files")
 		end,
