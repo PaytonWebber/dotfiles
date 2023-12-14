@@ -13,6 +13,11 @@ vim.keymap.set("n", "<leader>fg", builtin.live_grep, {})
 vim.keymap.set("n", "<leader>fo", builtin.oldfiles, {})
 vim.keymap.set("n", "<leader><space>", builtin.commands, {})
 
+-- MiniFiles
+vim.keymap.set("n", "<leader>s", function()
+	require("mini.files").open()
+end)
+
 -- Trouble
 vim.keymap.set("n", "<leader>xx", function()
 	require("trouble").open()

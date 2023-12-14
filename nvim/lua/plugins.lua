@@ -215,15 +215,7 @@ require("lazy").setup({
 	-- Icons
 	{ "nvim-tree/nvim-web-devicons", event = "VeryLazy" },
 
-	-- File explorer
-	{
-		"nvim-tree/nvim-tree.lua",
-		keys = { "<space>s" },
-		dependencies = { "nvim-tree/nvim-web-devicons" },
-		config = function()
-			require("config.nvim-tree")
-		end,
-	},
+	{ "echasnovski/mini.files", version = "*" },
 
 	-- Fancy statusline
 	{
