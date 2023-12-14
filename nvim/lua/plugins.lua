@@ -336,6 +336,9 @@ require("lazy").setup({
 	-- Comment plugin
 	{ "tpope/vim-commentary", event = "VeryLazy" },
 
+	-- Git
+	{ "tpope/vim-fugitive", event = "VeryLazy" },
+
 	-- Automatic insertion and deletion of a pair of characters
 	{ "Raimondi/delimitMate", event = "InsertEnter" },
 
@@ -350,17 +353,13 @@ require("lazy").setup({
 	-- { "vim-pandoc/vim-pandoc" },
 	-- { "vim-pandoc/vim-pandoc-syntax" },
 
-	-- Markdown
-
-	-- { "iamcco/markdown-preview.nvim" },
-
 	-- Paint for better markdown headers
 	-- {
-	--     "folke/paint.nvim",
-	--     event = "BufRead",
-	--     config = function()
-	--         require("config.paint")
-	--     end,
+	-- 	"folke/paint.nvim",
+	-- 	event = "BufRead",
+	-- 	config = function()
+	-- 		require("config.paint")
+	-- 	end,
 	-- },
 	-----------------------------------------------------------
 })
