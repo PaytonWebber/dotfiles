@@ -215,7 +215,13 @@ require("lazy").setup({
 	-- Icons
 	{ "nvim-tree/nvim-web-devicons", event = "VeryLazy" },
 
-	{ "echasnovski/mini.files", version = "*" },
+	{
+		"echasnovski/mini.files",
+		version = "*",
+		config = function()
+			require("config.mini-files")
+		end,
+	},
 
 	-- Fancy statusline
 	{
