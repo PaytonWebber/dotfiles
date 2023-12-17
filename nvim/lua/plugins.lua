@@ -63,13 +63,13 @@ require("lazy").setup({
 
 	-- Kanagawa
 	{
-	    "rebelot/kanagawa.nvim",
-	    lazy = false, -- load immediately
-	    priority = 1000, -- load as early as possible
-	    config = function()
-	        require("config.kanagawa")
-	        vim.cmd([[colorscheme kanagawa]])
-	    end,
+		"rebelot/kanagawa.nvim",
+		lazy = false, -- load immediately
+		priority = 1000, -- load as early as possible
+		config = function()
+			require("config.kanagawa")
+			vim.cmd([[colorscheme kanagawa]])
+		end,
 	},
 
 	-- Rose-Pine

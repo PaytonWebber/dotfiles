@@ -25,4 +25,5 @@ vim.opt.incsearch = true
 
 vim.opt.scrolloff = 26
 
--- Make the cursor always be in the middle of the screen
+-- Remove auto commenting
+vim.cmd([[autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o]])
