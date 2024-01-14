@@ -1,0 +1,48 @@
+[global]
+    # Defines the corner radius of notification windows
+    corner_radius = 5
+
+    # Set the font. Standard Pango font strings are allowed
+    font = JetBrains Mono 11
+
+    # Define the color scheme
+    background = "#222222"
+    foreground = "#f3f4f5"
+
+    # Define the frame color and width
+    frame_color = "#aaaaaa"
+    frame_width = 2
+
+    # Set the transparency of notifications (requires a compositor)
+    transparency = 20
+
+    # Set the time a notification is displayed
+    timeout = 10
+
+[urgency_low]
+    # Low urgency notifications settings
+    background = "#222222"
+    foreground = "#888888"
+    timeout = 10
+
+[urgency_normal]
+    # Normal urgency notifications settings
+    background = "#285577"
+    foreground = "#ffffff"
+    timeout = 10
+
+[urgency_critical]
+    # Critical urgency notifications settings
+    background = "#900000"
+    foreground = "#ffffff"
+    timeout = 0
+
+[rules]
+    # Rules for specific applications or notifications
+    # Example: Increase the size of notifications from "newsboat"
+    appname = "newsboat"
+
+    # Example: Set a different timeout for "battery low" notifications
+    summary = "*battery low*"
+    timeout = 5
+
