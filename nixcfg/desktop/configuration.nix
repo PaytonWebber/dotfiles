@@ -74,6 +74,7 @@
 		isNormalUser = true;
 		description = "Payton Webber";
 		extraGroups = [ "networkmanager" "wheel" "video" "audio" ];
+        shell = pkgs.fish;
 		packages = with pkgs; [
 
 			# Desktop
