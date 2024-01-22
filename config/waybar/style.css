@@ -1,138 +1,177 @@
 * {
-  border: none;
-  border-radius: 0;
-  min-height: 0;
-  font-family: JetBrainsMono Nerd Font;
-  font-size: 13px;
+    border: none;
+    font-family: JetBrainsMono Nerd Font;
+    font-size: 13px;
 }
 
 window#waybar {
-  background-color: #181825;
-  transition-property: background-color;
-  transition-duration: 0.5s;
+    background: transparent;
 }
 
 window#waybar.hidden {
-  opacity: 0.5;
+    opacity: 0.2;
 }
 
 #workspaces {
-  background-color: transparent;
+    transition: none;
+    background: #212D40;
+    border-radius: 10px;
+    margin-top: 5px;
+    margin-left: 12px;
 }
 
 #workspaces button {
-  all: initial; /* Remove GTK theme values (waybar #1351) */
-  min-width: 0; /* Fix weird spacing in materia (waybar #450) */
-  box-shadow: inset 0 -3px transparent; /* Use box-shadow instead of border so the text isn't offset */
-  padding: 6px 18px;
-  margin: 6px 3px;
-  border-radius: 4px;
-  background-color: #1e1e2e;
-  color: #cdd6f4;
+    transition: none;
+    color: #364156;
+    background: transparent;
+    font-size: 18px;
 }
 
-#workspaces button.active {
-  color: #1e1e2e;
-  background-color: #cdd6f4;
+#workspaces button.persistent {
+    color: #FFFFFF;
+    font-size: 12px;
 }
 
 #workspaces button:hover {
- box-shadow: inherit;
- text-shadow: inherit;
- color: #1e1e2e;
- background-color: #cdd6f4;
+    transition: none;
+    box-shadow: inherit;
+    text-shadow: inherit;
+    border-radius: inherit;
+    color: #FFFFFF;
+    background: #364156;
+}
+
+#workspaces button.focused {
+    color: white;
 }
 
 #workspaces button.urgent {
-  background-color: #f38ba8;
-}
-
-#memory,
-#custom-power,
-#battery,
-#backlight,
-#pulseaudio,
-#network,
-#clock,
-#tray {
-  border-radius: 4px;
-  margin: 6px 3px;
-  padding: 6px 12px;
-  background-color: #1e1e2e;
-  color: #181825;
-}
-
-#custom-power {
-  margin-right: 6px;
-}
-
-#custom-logo {
-  padding-right: 7px;
-  padding-left: 7px;
-  margin-left: 5px;
-  font-size: 15px;
-  border-radius: 8px 0px 0px 8px;
-  color: #1793d1;
-}
-
-#memory {
-  background-color: #fab387;
-}
-#battery {
-  background-color: #f38ba8;
-}
-@keyframes blink {
-  to {
     background-color: #f38ba8;
+}
+
+#tray {
+    background-color: #1e1e2e;
     color: #181825;
-  }
+    border-radius: 10px;
+    margin-bottom: 0px;
+    margin-top: 5px;
+    margin-right: 5px;
+    margin-left: 5px;
+    padding-bottom: 0px;
+    padding-top: 0px;
+    padding-right: 15px;
+    padding-left: 15px;
 }
 
-#battery.warning,
-#battery.critical,
-#battery.urgent {
-  background-color: #ff0048;
-  color: #181825;
-  animation-name: blink;
-  animation-duration: 0.5s;
-  animation-timing-function: linear;
-  animation-iteration-count: infinite;
-  animation-direction: alternate;
+#temperature {
+    transition: none;
+    color: #ffffff;
+    background: #7B0D1E;
+    border-radius: 10px;
+    margin-bottom: 0px;
+    margin-top: 5px;
+    margin-right: 5px;
+    margin-left: 5px;
+    padding-bottom: 0px;
+    padding-top: 0px;
+    padding-right: 15px;
+    padding-left: 15px;
 }
+
+#temperature.critical {
+    background-color: #eb4d4b;
+}
+#memory {
+    transition: none;
+    color: #FFFFFF;
+    background: #364156;
+    border-radius: 10px;
+    margin-bottom: 0px;
+    margin-top: 5px;
+    margin-right: 5px;
+    margin-left: 5px;
+    padding-bottom: 0px;
+    padding-top: 0px;
+    padding-right: 5px;
+    padding-left: 15px;
+}
+
+#battery {
+    transition: none;
+    color: #FFFFFF;
+    background: #558564;
+    border-radius: 10px;
+    margin-bottom: 0px;
+    margin-top: 5px;
+    margin-right: 5px;
+    margin-left: 5px;
+    padding-bottom: 0px;
+    padding-top: 0px;
+    padding-right: 15px;
+    padding-left: 15px;
+
+}
+
 #battery.charging {
-  background-color: #a6e3a1;
+    color: #ffffff;
+    background-color: #26A65B;
 }
 
-#backlight {
-  background-color: #fab387;
-}
-
-#pulseaudio {
-  background-color: #f9e2af;
+#battery.urgent {
+    background-color: #ff0048;
+    color: #181825;
+    animation-name: blink;
+    animation-duration: 0.5s;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
 }
 
 #network {
-  background-color: #94e2d5;
-  padding-right: 17px;
+    border-radius: 10px;
+    transition: none;
+    color: #FFFFFF;
+    background: #E88873;
+    margin-bottom: 0px;
+    margin-top: 5px;
+    margin-right: 5px;
+    margin-left: 5px;
+    padding-bottom: 0px;
+    padding-top: 0px;
+    padding-right: 20px;
+    padding-left: 15px;
 }
 
 #clock {
-  font-family: JetBrainsMono Nerd Font;
-  background-color: #cbfd6d;
+    transition: none;
+    color: #FFFFFF;
+    background: #689689;
+    border-radius: 10px;
+    margin-bottom: 0px;
+    margin-top: 5px;
+    margin-right: 5px;
+    margin-left: 5px;
+    padding-bottom: 0px;
+    padding-top: 0px;
+    padding-right: 15px;
+    padding-left: 15px;
 }
-
-#custom-power {
-  background-color: #f2cdcd;
-}
-
 
 tooltip {
-border-radius: 8px;
-padding: 15px;
-background-color: #131822;
+    transition: none;
+    color: #ffffff;
+    background: #383c4a;
 }
 
 tooltip label {
-padding: 5px;
-background-color: #131822;
+    transition: none;
+    color: #ffffff;
+    background: #383c4a;
+}
+
+@keyframes blink {
+    to {
+        background-color: #f38ba8;
+        color: #181825;
+    }
 }

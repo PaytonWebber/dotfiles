@@ -6,9 +6,9 @@
 
 {
 	imports =
-		[ # Include the results of the hardware scan.
+	[ # Include the results of the hardware scan.
 		./hardware-configuration.nix
-		];
+	];
 
 	# Bootloader.
 	boot.loader = {
@@ -69,13 +69,19 @@
 	};
 
 	sound.enable = true;
-	hardware.pulseaudio.enable = true;
+	hardware = {
+		bluetooth = {
+			enable = true;
+			powerOnBoot = true;
+		};
+		pulseaudio.enable = true;
+	};
 	security.rtkit.enable = true;
 
 	users.users.payton = {
 		isNormalUser = true;
 		description = "Payton Webber";
-		extraGroups = [ "networkmanager" "wheel" "video" "audio" ];
+		extraGroups = [ "networkmanager" "wheel" "video" "audio" "dialout" ];
 		packages = with pkgs; [
 			
 			# Desktop
@@ -92,6 +98,10 @@
 			discord
 			zathura
 			rofi
+
+			# Misc
+			bat
+			spotifyd
 		];
 	};
 
@@ -134,9 +144,13 @@
 		nodejs_20
 
 		# TUI Utils
+		spotify-tui
 		neofetch
 		tmux
 		htop
+
+		# Misc
+		lm_sensors
 	];
 
 	fonts.packages = with pkgs; [

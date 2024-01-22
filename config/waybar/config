@@ -1,8 +1,7 @@
 {
     "layer": "top",
     "position": "top",
-    "spacing": 0,
-    "height": 34,
+    "spacing": 10,
     "modules-left": [
         "hyprland/workspaces"
     ],
@@ -10,11 +9,10 @@
         "clock"
     ],
     "modules-right": [
-        "tray",
+        "temperature",
         "memory",
         "network",
         "battery",
-        "custom/power"
     ],
     "hyprland/workspaces": {
         "on-click": "activate",
@@ -32,7 +30,7 @@
             "9": "9",
             "active": "",
         },
-        "persistent_workspaces": {
+        "persistent-workspaces": {
             "1": [],
             "2": [],
             "3": [],
@@ -42,8 +40,15 @@
     },
     "memory": {
         "interval": 5,
-        "format": "󰍛 {}%",
+        "format": "{}% 󰍛 ",
         "max-length": 10
+    },
+    "temperature": {
+        "hwmon-path": "/sys/class/hwmon/hwmon7/temp1_input",
+        "interval": 5,
+        "critical-threshold": 90,
+        "format-critical": "{temperatureC}°C ",
+        "format": "{temperatureC}°C "
     },
     "tray": {
         "spacing": 10
@@ -54,7 +59,7 @@
         "format": "  {:%I:%M %p}"
     },
     "network": {
-        "format-wifi" : "{icon}",
+        "format-wifi" : "{essid} ({signalStrength}%) {icon}",
         "format-icons": ["󰤯","󰤟","󰤢","󰤥","󰤨"],
         "format-ethernet": "󰀂",
 	"format-alt" : "󱛇",
