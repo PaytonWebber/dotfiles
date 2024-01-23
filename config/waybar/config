@@ -10,6 +10,7 @@
     ],
     "modules-right": [
         "temperature",
+        "cpu",
         "memory",
         "network",
         "battery",
@@ -43,8 +44,13 @@
         "format": "{}% 󰍛 ",
         "max-length": 10
     },
+    "cpu": {
+        "interval": 10,
+        "format": "{usage}% ",
+        "max-length": 10
+    },
     "temperature": {
-        "hwmon-path": "/sys/class/hwmon/hwmon7/temp1_input",
+        "hwmon-path": "/sys/class/hwmon/hwmon9/temp1_input",
         "interval": 5,
         "critical-threshold": 90,
         "format-critical": "{temperatureC}°C ",

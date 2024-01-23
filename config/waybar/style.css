@@ -1,5 +1,6 @@
 * {
     border: none;
+    border-radius: 20px;
     font-family: JetBrainsMono Nerd Font;
     font-size: 13px;
 }
@@ -14,15 +15,14 @@ window#waybar.hidden {
 
 #workspaces {
     transition: none;
-    background: #212D40;
-    border-radius: 10px;
+    background: #14213D;
     margin-top: 5px;
     margin-left: 12px;
 }
 
 #workspaces button {
     transition: none;
-    color: #364156;
+    color: #14213D;
     background: transparent;
     font-size: 18px;
 }
@@ -52,7 +52,6 @@ window#waybar.hidden {
 #tray {
     background-color: #1e1e2e;
     color: #181825;
-    border-radius: 10px;
     margin-bottom: 0px;
     margin-top: 5px;
     margin-right: 5px;
@@ -67,29 +66,35 @@ window#waybar.hidden {
     transition: none;
     color: #ffffff;
     background: #7B0D1E;
-    border-radius: 10px;
     margin-bottom: 0px;
     margin-top: 5px;
-    margin-right: 5px;
-    margin-left: 5px;
+    padding-bottom: 0px;
+    padding-top: 0px;
+    padding-right: 15px;
+    padding-left: 15px;
+}
+#temperature.critical {
+    background-color: #eb4d4b;
+}
+
+#cpu {
+    transition: none;
+    color: #FFFFFF;
+    background: #65524D;
+    margin-bottom: 0px;
+    margin-top: 5px;
     padding-bottom: 0px;
     padding-top: 0px;
     padding-right: 15px;
     padding-left: 15px;
 }
 
-#temperature.critical {
-    background-color: #eb4d4b;
-}
 #memory {
     transition: none;
     color: #FFFFFF;
     background: #364156;
-    border-radius: 10px;
     margin-bottom: 0px;
     margin-top: 5px;
-    margin-right: 5px;
-    margin-left: 5px;
     padding-bottom: 0px;
     padding-top: 0px;
     padding-right: 5px;
@@ -100,11 +105,9 @@ window#waybar.hidden {
     transition: none;
     color: #FFFFFF;
     background: #558564;
-    border-radius: 10px;
     margin-bottom: 0px;
     margin-top: 5px;
-    margin-right: 5px;
-    margin-left: 5px;
+    margin-right: 10px;
     padding-bottom: 0px;
     padding-top: 0px;
     padding-right: 15px;
@@ -114,7 +117,8 @@ window#waybar.hidden {
 
 #battery.charging {
     color: #ffffff;
-    background-color: #26A65B;
+    background-color: #44633F;
+
 }
 
 #battery.urgent {
@@ -128,14 +132,11 @@ window#waybar.hidden {
 }
 
 #network {
-    border-radius: 10px;
     transition: none;
     color: #FFFFFF;
-    background: #E88873;
+    background: #804E49;
     margin-bottom: 0px;
     margin-top: 5px;
-    margin-right: 5px;
-    margin-left: 5px;
     padding-bottom: 0px;
     padding-top: 0px;
     padding-right: 20px;
@@ -145,8 +146,7 @@ window#waybar.hidden {
 #clock {
     transition: none;
     color: #FFFFFF;
-    background: #689689;
-    border-radius: 10px;
+    background: #14213D;
     margin-bottom: 0px;
     margin-top: 5px;
     margin-right: 5px;
