@@ -1,6 +1,10 @@
 * {
     border: none;
     border-radius: 20px;
+    margin-top: 0px;
+    margin-bottom: 0px;
+    padding-bottom: 2px;
+    padding-top: 2px;
     font-family: JetBrainsMono Nerd Font;
     font-size: 13px;
 }
@@ -16,7 +20,6 @@ window#waybar.hidden {
 #workspaces {
     transition: none;
     background: #14213D;
-    margin-top: 5px;
     margin-left: 12px;
 }
 
@@ -52,12 +55,8 @@ window#waybar.hidden {
 #tray {
     background-color: #1e1e2e;
     color: #181825;
-    margin-bottom: 0px;
-    margin-top: 5px;
     margin-right: 5px;
     margin-left: 5px;
-    padding-bottom: 0px;
-    padding-top: 0px;
     padding-right: 15px;
     padding-left: 15px;
 }
@@ -66,10 +65,6 @@ window#waybar.hidden {
     transition: none;
     color: #ffffff;
     background: #7B0D1E;
-    margin-bottom: 0px;
-    margin-top: 5px;
-    padding-bottom: 0px;
-    padding-top: 0px;
     padding-right: 15px;
     padding-left: 15px;
 }
@@ -81,10 +76,6 @@ window#waybar.hidden {
     transition: none;
     color: #FFFFFF;
     background: #65524D;
-    margin-bottom: 0px;
-    margin-top: 5px;
-    padding-bottom: 0px;
-    padding-top: 0px;
     padding-right: 15px;
     padding-left: 15px;
 }
@@ -93,10 +84,6 @@ window#waybar.hidden {
     transition: none;
     color: #FFFFFF;
     background: #364156;
-    margin-bottom: 0px;
-    margin-top: 5px;
-    padding-bottom: 0px;
-    padding-top: 0px;
     padding-right: 5px;
     padding-left: 15px;
 }
@@ -105,11 +92,7 @@ window#waybar.hidden {
     transition: none;
     color: #FFFFFF;
     background: #558564;
-    margin-bottom: 0px;
-    margin-top: 5px;
     margin-right: 10px;
-    padding-bottom: 0px;
-    padding-top: 0px;
     padding-right: 15px;
     padding-left: 15px;
 
@@ -135,10 +118,6 @@ window#waybar.hidden {
     transition: none;
     color: #FFFFFF;
     background: #804E49;
-    margin-bottom: 0px;
-    margin-top: 5px;
-    padding-bottom: 0px;
-    padding-top: 0px;
     padding-right: 20px;
     padding-left: 15px;
 }
@@ -147,12 +126,8 @@ window#waybar.hidden {
     transition: none;
     color: #FFFFFF;
     background: #14213D;
-    margin-bottom: 0px;
-    margin-top: 5px;
     margin-right: 5px;
     margin-left: 5px;
-    padding-bottom: 0px;
-    padding-top: 0px;
     padding-right: 15px;
     padding-left: 15px;
 }
