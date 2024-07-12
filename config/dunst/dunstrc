@@ -6,11 +6,11 @@
     font = JetBrains Mono 11
 
     # Define the color scheme
-    background = "#222222"
-    foreground = "#f3f4f5"
+    background = "#2e3440"
+    foreground = "#d8dee9"
 
     # Define the frame color and width
-    frame_color = "#aaaaaa"
+    frame_color = "#ffbd5e"
     frame_width = 2
 
     # Set the transparency of notifications (requires a compositor)

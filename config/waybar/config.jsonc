@@ -1,0 +1,162 @@
+{
+// sourced from header module //
+
+    "layer": "top",
+    "position": "top",
+    "mod": "dock",
+    "height": 28,
+    "exclusive": true,
+    "passthrough": false,
+    "gtk-layer-shell": true,
+    "width": 1900,
+    "margin-top": 10,
+
+	"modules-left": ["custom/l_end","hyprland/workspaces","custom/r_end","custom/padd"],
+	"modules-center": ["custom/padd","","custom/padd"],
+	"modules-right": ["custom/padd","custom/l_end","network","custom/r_end","custom/l_end","bluetooth","custom/r_end","custom/l_end","battery","custom/r_end","custom/l_end","clock","custom/r_end"],
+
+    "hyprland/workspaces": {
+        "on-click": "activate",
+        "format": "{icon}",
+        "format-icons": {
+            "default": "",
+            "1": "1",
+            "2": "2",
+            "3": "3",
+            "4": "4",
+            "5": "5",
+            "6": "6",
+            "7": "7",
+            "8": "8",
+            "9": "9",
+            "active": "",
+        },
+        "persistent-workspaces": {
+            "1": [],
+            "2": [],
+            "3": [],
+            "4": [],
+            "5": []
+        }
+    },
+
+"tray": {
+    "icon-size": 18,
+    "rotate": 0,
+    "spacing": 5
+},
+
+"network": {
+    "format-wifi" : "{essid} ({signalStrength}%) {icon}",
+    "format-icons": ["󰤯","󰤟","󰤢","󰤥","󰤨"],
+    "format-ethernet": "󰀂",
+    "format-alt" : "󱛇",
+    "format-disconnected" : "󰖪",
+    "tooltip-format-wifi": "{icon} {essid}\n⇣{bandwidthDownBytes}  ⇡{bandwidthUpBytes}",
+    "tooltip-format-ethernet": "󰀂  {ifname}\n⇣{bandwidthDownBytes}  ⇡{bandwidthUpBytes}",
+    "tooltip-format-disconnected": "Disconnected",
+    "interval": 5,
+    "nospacing": 1,
+},
+
+"bluetooth": {
+    "format": "",
+    "format-connected": "󰂱",
+    "format-disabled": "󰂲",
+    "rotate": 0,
+    // "format-connected-battery": "{icon} {num_connections}",
+    "format-connected-battery": "{icon} {device_alias} ({device_battery_percentage}%)",
+    "format-icons": ["󰥇", "󰤾", "󰤿", "󰥀", "󰥁", "󰥂", "󰥃", "󰥄", "󰥅", "󰥆", "󰥈"],
+    // "format-device-preference": [ "device1", "device2" ], // preference list deciding the displayed device If this config option is not defined or none of the devices in the list are connected, it will fall back to showing the last connected device.
+    "tooltip-format": "{controller_alias}\n{num_connections} connected",
+    "tooltip-format-connected": "{controller_alias}\n{num_connections} connected\n\n{device_enumerate}",
+    "tooltip-format-enumerate-connected": "{device_alias}",
+    "tooltip-format-enumerate-connected-battery": "{device_alias}\t{icon} {device_battery_percentage}%"
+},
+
+"battery": {
+    "states": {
+        "good": 95,
+        "warning": 30,
+        "critical": 20
+    },
+    "format": "{icon} {capacity}%",
+    "rotate": 0,
+    "format-charging": " {capacity}%",
+    "format-plugged": " {capacity}%",
+    "format-alt": "{time} {icon}",
+    "format-icons": ["󰂎", "󰁺", "󰁻", "󰁼", "󰁽", "󰁾", "󰁿", "󰂀", "󰂁", "󰂂", "󰁹"],
+    "interval": 5,
+},
+
+"clock": {
+    "format": "  {:%I:%M %p 󰃭 %d·%m·%y}",
+    "rotate": 0,
+    "format-alt": "  {:%I:%M %p 󰃭 %d·%m·%y}",
+    "tooltip-format": "<tt>{calendar}</tt>",
+    "calendar": {
+        "mode": "month",
+        "mode-mon-col": 3,
+        "on-scroll": 1,
+        "on-click-right": "mode",
+        "format": {
+            "months": "<span color='#ffead3'><b>{}</b></span>",
+            "weekdays": "<span color='#ffcc66'><b>{}</b></span>",
+            "today": "<span color='#ff6699'><b>{}</b></span>"
+        }
+    },
+    "actions": {
+        "on-click-right": "mode",
+        "on-click-forward": "tz_up",
+        "on-click-backward": "tz_down",
+        "on-scroll-up": "shift_up",
+        "on-scroll-down": "shift_down"
+    }
+},
+
+// modules for padding //
+
+"custom/l_end": {
+    "format": " ",
+    "interval" : "once",
+    "tooltip": false
+},
+
+"custom/r_end": {
+    "format": " ",
+    "interval" : "once",
+    "tooltip": false
+},
+
+"custom/sl_end": {
+    "format": " ",
+    "interval" : "once",
+    "tooltip": false
+},
+
+"custom/sr_end": {
+    "format": " ",
+    "interval" : "once",
+    "tooltip": false
+},
+
+"custom/rl_end": {
+    "format": " ",
+    "interval" : "once",
+    "tooltip": false
+},
+
+"custom/rr_end": {
+    "format": " ",
+    "interval" : "once",
+    "tooltip": false
+},
+
+"custom/padd": {
+    "format": " ",
+    "interval" : "once",
+    "tooltip": false
+},
+
+}
+
