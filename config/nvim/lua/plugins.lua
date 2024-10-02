@@ -338,7 +338,11 @@ require("lazy").setup({
     },
 
     -- Quick file switcher
-    { "theprimeagen/harpoon" },
+    {
+        "ThePrimeagen/harpoon",
+        branch = "harpoon2",
+        dependencies = { "nvim-lua/plenary.nvim" }
+    },
 
     -- Modern matchit implementation
     { "andymass/vim-matchup", event = "BufRead" },
