@@ -1,0 +1,19 @@
+{% assign busy_open_colors = '%{B#d65d0e}' %}
+{% assign visible_open_colors = '%{F#179299}' %}
+{% assign mine_open_colors = '%{B#fe8019}' %}
+{% assign close_colors = '%{B-}%{F-}' %}
+
+{% for tag in workspace.tags %}
+%{A:leftwm-command 'GoToTag {{ tag.index | plus:'1' }} false':}
+{% if tag.mine %}
+{{mine_open_colors}}  {{ tag.name }}  {{close_colors}}
+{% elsif tag.visible  %}
+{{visible_open_colors}}  {{ tag.name }}  {{close_colors}}
+{% elsif tag.busy  %}
+{{busy_open_colors}}  {{ tag.name }}  {{close_colors}}
+{% else %}
+  {{ tag.name }}  
+{% endif %}
+%{A}
+{% endfor %}
+%{c}
