@@ -1,48 +1,61 @@
 [global]
-    # Defines the corner radius of notification windows
-    corner_radius = 5
 
-    # Set the font. Standard Pango font strings are allowed
-    font = JetBrains Mono 11
+    monitor = 0
 
-    # Define the color scheme
-    background = "#2e3440"
-    foreground = "#d8dee9"
+    follow = none
+    indicate_hidden = true
+    enable_posix_regex = true
 
-    # Define the frame color and width
-    frame_color = "#ffbd5e"
+    width = 339
+    offset = 4x4
+
+    separator_height = 2
+
+    padding = 8
+    horizontal_padding = 8
+    text_icon_padding = 0
     frame_width = 2
 
-    # Set the transparency of notifications (requires a compositor)
-    transparency = 20
+    frame_color = "#EBDBB2"
+    separator_color = frame
 
-    # Set the time a notification is displayed
-    timeout = 10
+    sort = true
+    idle_threshold = 120
+    font = Inter 10.5
+    line_height = 0
+    markup = full
+    alignment = left
+    vertical_alignment = center
+    show_age_threshold = 60
+    word_wrap = true
+    stack_duplicates = true
+    hide_duplicate_count = false
+
+    show_indicators = true
+
+    min_icon_size = 0
+    max_icon_size = 64
+    icon_corners = all
+    icon_corner_radius = 2
+
+    browser = /usr/bin/firefox --new-tab
+
+    title = Dunst
+    class = Dunst
+
+    corner_radius = 4
+    corners = all
+    timeout = 7
 
 [urgency_low]
-    # Low urgency notifications settings
-    background = "#222222"
-    foreground = "#888888"
-    timeout = 10
+    background = "#282828EB"
+    foreground = "#EBDBB2"
 
 [urgency_normal]
-    # Normal urgency notifications settings
-    background = "#285577"
-    foreground = "#ffffff"
-    timeout = 10
+    background = "#282828EB"
+    foreground = "#EBDBB2"
 
 [urgency_critical]
-    # Critical urgency notifications settings
-    background = "#900000"
-    foreground = "#ffffff"
-    timeout = 0
-
-[rules]
-    # Rules for specific applications or notifications
-    # Example: Increase the size of notifications from "newsboat"
-    appname = "newsboat"
-
-    # Example: Set a different timeout for "battery low" notifications
-    summary = "*battery low*"
-    timeout = 5
-
+    background = "#282828EB"
+    foreground = "#EBDBB2"
+    frame_color = "#FB4943"
