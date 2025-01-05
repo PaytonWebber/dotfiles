@@ -31,7 +31,7 @@ require("lazy").setup({
     -- Catppuccin
     -- {
     --     "catppuccin/nvim",
-    --     lazy = false, -- load immediately
+    --     lazy = false,    -- load immediately
     --     priority = 1000, -- load as early as possible
     --     config = function()
     --         require("config.catppuccin")
@@ -39,7 +39,7 @@ require("lazy").setup({
     --     end,
     -- },
 
-    -- -- Nordic
+    -- Nordic
     -- {
     --     "AlexvZyl/nordic.nvim",
     --     lazy = false, -- load immediately
@@ -49,24 +49,38 @@ require("lazy").setup({
     --         vim.cmd([[colorscheme nordic]])
     --     end,
     -- },
+
+    -- Cyberdream
+    -- {
+    --     "scottmckendry/cyberdream.nvim",
+    --     lazy = false,
+    --     priority = 1000,
+    --     config = function()
+    --         require("config.cyberdream")
+    --         vim.cmd([[colorscheme cyberdream]])
+    --     end,
+    -- },
+
+    -- Gruvbox
     {
-        "scottmckendry/cyberdream.nvim",
+        "ellisonleao/gruvbox.nvim",
         lazy = false,
         priority = 1000,
         config = function()
-            require("config.cyberdream")
-            vim.cmd([[colorscheme cyberdream]])
+            require("config.gruvbox")
+            vim.cmd([[colorscheme gruvbox]])
         end,
     },
+
     -- Kanagawa
     -- {
-    -- 	"rebelot/kanagawa.nvim",
-    -- 	lazy = false, -- load immediately
-    -- 	priority = 1000, -- load as early as possible
-    -- 	config = function()
-    -- 		require("config.kanagawa")
-    -- 		vim.cmd([[colorscheme kanagawa]])
-    -- 	end,
+    --     "rebelot/kanagawa.nvim",
+    --     lazy = false, -- load immediately
+    --     priority = 1000, -- load as early as possible
+    --     config = function()
+    --         require("config.kanagawa")
+    --         vim.cmd([[colorscheme kanagawa]])
+    --     end,
     -- },
 
     -- Rose-Pine
@@ -82,13 +96,13 @@ require("lazy").setup({
 
     -- Dracula
     -- {
-    -- 	"Mofiqul/dracula.nvim",
-    -- 	lazy = false, -- load immediately
-    -- 	priority = 1000, -- load as early as possible
-    -- 	config = function()
-    -- 		-- require("config.dracula")
-    -- 		vim.cmd([[colorscheme dracula]])
-    -- 	end,
+    --     "Mofiqul/dracula.nvim",
+    --     lazy = false, -- load immediately
+    --     priority = 1000, -- load as early as possible
+    --     config = function()
+    --         -- require("config.dracula")
+    --         vim.cmd([[colorscheme dracula]])
+    --     end,
     -- },
 
     ------------------------------------------------------
@@ -104,7 +118,7 @@ require("lazy").setup({
     -- },
 
     -- CoPilot built with Vimscript
-    { "github/copilot.vim" },
+    -- { "github/copilot.vim" },
 
     {
         "VonHeikemen/lsp-zero.nvim",
@@ -200,6 +214,16 @@ require("lazy").setup({
             })
         end,
     },
+
+    -- Rust Tools
+    {
+        'mrcjkb/rustaceanvim',
+        version = '^5', -- Recommended
+        lazy = false,   -- This plugin is already lazy
+    },
+
+    -- Debug Adapter Protocol (DAP) for Rust LSP
+    { 'mfussenegger/nvim-dap' },
 
     -- Treesitter
     {
