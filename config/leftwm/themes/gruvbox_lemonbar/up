@@ -26,6 +26,10 @@ feh --bg-fill "$SCRIPTPATH/solar-system.jpg"
 # For audio control
 sxhkd &
 
+if [ -x "$(command -v picom)" ]; then
+    picom --config $HOME/.config/leftwm/themes/current/conf/picom.conf &> /dev/null &
+fi
+
 # Lemonbar(s) ------------------------------------------------------------------
 
 # Here will be created a lemonbar instance for each workspace (virtual screen)
