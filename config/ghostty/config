@@ -1,0 +1,9 @@
+font-family = JetBrainsMono Nerd Font
+font-size = 13
+theme = rose-pine
+cursor-style = block
+window-padding-balance = true 
+copy-on-select = clipboard
+window-decoration = false
+shell-integration = fish
+command = /usr/bin/fish
