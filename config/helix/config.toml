@@ -34,3 +34,12 @@ display-inlay-hints = false
 
 [editor.indent-guides]
 render = true
+
+[keys.normal]
+V = ["goto_first_nonwhitespace", "extend_to_line_end"]
+D = ["ensure_selections_forward", "extend_to_line_end"]
+x = "extend_line"
+
+[keys.select]
+V = "extend_to_line_end"
+x = "extend_line"
