@@ -10,6 +10,7 @@ auto-info = false
 indent-heuristic = "tree-sitter"
 popup-border = "none"
 completion-trigger-len = 1
+soft-wrap.enable = true
 
 [editor.cursor-shape]
 insert = "bar"
