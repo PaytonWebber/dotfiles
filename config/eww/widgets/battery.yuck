@@ -1,0 +1,13 @@
+(defwidget battery []
+  (box :class "module" :orientation "h"
+    (label
+      :text "${round(EWW_BATTERY.total_avg, 0)}% ${(EWW_BATTERY['BAT1'].status == 'Charging' || EWW_BATTERY['BAT0'].status == 'Charging') 
+                 ? '󰂄' 
+                 : (EWW_BATTERY.total_avg > 80.0 
+                     ? '󱊣' 
+                     : (EWW_BATTERY.total_avg > 50.0 
+                         ? '󱊢' 
+                         : '󱊡'))}"
+    )
+  )
+)

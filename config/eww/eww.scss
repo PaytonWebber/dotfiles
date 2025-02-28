@@ -1,0 +1,23 @@
+* {
+  all: unset;
+  font-family: JetBrainsMono Nerd Font;
+  font-size: 12px;
+  font-weight: bold;
+}
+
+.module {
+    background: #282828; 
+    border-radius: 20px; 
+    border: 2px solid #ffbd5e;
+    margin-right: 8px;
+    padding: 0 10px;
+}
+
+.bar {
+    background: transparent;
+}
+
+.workspace {
+  border-radius: 30px;
+  padding: 8px;
+}
