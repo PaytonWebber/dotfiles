@@ -1,0 +1,18 @@
+(deflisten ws_data :initial '[
+    { "id": "1", "focused": true, "active": true },
+    { "id": "2", "focused": false, "active": false },
+    { "id": "3", "focused": false, "active": false },
+    { "id": "4", "focused": false, "active": false },
+    { "id": "5", "focused": false, "active": false }
+  ]
+' "bash ~/.config/eww/scripts/get-workspaces.sh")
+
+(defwidget workspaces []
+  (box :class "module" :orientation "h" :space-evenly true
+    (for ws in ws_data
+      (button :class "workspace"
+              :onclick "hyprctl dispatch workspace ${ws.id}"
+              {(ws.focused) ? "" : (ws.active ? "" : "")})
+    )
+  )
+)
