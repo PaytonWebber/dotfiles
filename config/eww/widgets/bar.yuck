@@ -1,3 +1,4 @@
+(include "widgets/clock.yuck")
 (include "widgets/workspaces.yuck")
 (include "widgets/battery.yuck")
 
@@ -7,7 +8,7 @@
     (box :class "center" :halign "start" :hexpand false :vexpand false
       (workspaces))
     (box :class "right" :halign "end" :hexpand false :vexpand false
-    (battery))
+    (clock)(battery))
   )
 )
 

@@ -1,0 +1,13 @@
+(defpoll time :interval "1s"
+              :initial ""  ; optional, defaults to poll at startup
+              :run-while time-visible   ; optional, defaults to 'true'
+  `date +%H:%M`)
+
+(defwidget clock []
+  (box :class "module" :orientation "h"
+    (label
+      :class "clock"
+      :text time
+    )
+  )
+)

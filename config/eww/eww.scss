@@ -1,13 +1,21 @@
 * {
   all: unset;
   font-family: JetBrainsMono Nerd Font;
-  font-size: 12px;
+  font-size: 13px;
   font-weight: bold;
+}
+
+tooltip {
+  background: #282828;
+}
+
+progressbar > trough {
+  min-width: 50px;
 }
 
 .module {
     background: #282828; 
-    border-radius: 20px; 
+    border-radius: 30px; 
     border: 2px solid #ffbd5e;
     margin-right: 8px;
     padding: 0 10px;
@@ -20,4 +28,12 @@
 .workspace {
   border-radius: 30px;
   padding: 8px;
+}
+
+.clock {
+  font-size: 14px;
+}
+
+.battery {
+  font-size: 14px;
 }
