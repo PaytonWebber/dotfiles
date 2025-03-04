@@ -28,6 +28,10 @@ progressbar > trough {
 .workspace {
   border-radius: 30px;
   padding: 8px;
+
+  &__1 {
+    color: #a89984;
+  }
 }
 
 .clock {

@@ -1,12 +1,12 @@
-(include "widgets/bar.yuck")
+(include "widgets/main_bar.yuck")
 
-(defwindow bar
+(defwindow main_bar
     	   :monitor 0
     	   :geometry (geometry :x "0px"
             	               :y "8px"
-                    	       :width "1902px"
+                    	       :width "3440px"
                              :height "15px"
     	                       :anchor "top center")
         :stacking "fg"
         :exclusive true
-    (bar))
+    (main_bar))

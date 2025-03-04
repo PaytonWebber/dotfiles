@@ -1,18 +1,18 @@
 (deflisten ws_data :initial '[
-    { "id": "1", "focused": true, "active": true },
-    { "id": "2", "focused": false, "active": false },
-    { "id": "3", "focused": false, "active": false },
-    { "id": "4", "focused": false, "active": false },
-    { "id": "5", "focused": false, "active": false }
+    { "workspace_id": "1", "focused": { "value": true, "monitor": 0 }, "active": true },
+    { "workspace_id": "2", "focused": { "value": true, "monitor": 1 }, "active": true },
+    { "workspace_id": "3", "focused": { "value": false, "monitor": null }, "active": false },
+    { "workspace_id": "4", "focused": { "value": false, "monitor": null }, "active": false },
+    { "workspace_id": "5", "focused": { "value": false, "monitor": null }, "active": false }
   ]
 ' "bash ~/.config/eww/scripts/get-workspaces.sh")
 
 (defwidget workspaces []
   (box :class "module" :orientation "h" :space-evenly true
     (for ws in ws_data
-      (button :class "workspace"
-              :onclick "hyprctl dispatch workspace ${ws.id}"
-              {(ws.focused) ? "" : (ws.active ? "" : "")})
+      (button :class "${(ws.focused.value) ? "workspace__${ws.focused.monitor}" : "workspace"}"
+              :onclick "hyprctl dispatch workspace ${ws.workspace_id}"
+              {(ws.focused.value) ? "" : (ws.active ? "" : "")})
     )
   )
 )
