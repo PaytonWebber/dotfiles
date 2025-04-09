@@ -15,14 +15,15 @@ progressbar > trough {
 
 .module {
     background: #282828; 
-    border-radius: 30px; 
-    border: 2px solid #ffbd5e;
     margin-right: 8px;
+    border-radius: 30px; 
     padding: 0 10px;
 }
 
 .bar {
-    background: transparent;
+    background: #282828; 
+    border-radius: 15px; 
+    border: 2px solid #ffbd5e;
 }
 
 .workspace {
