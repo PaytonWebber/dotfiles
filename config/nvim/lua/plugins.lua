@@ -158,11 +158,11 @@ require("lazy").setup({
     },
 
     -- Show indentation levels
-    {
-        "lukas-reineke/indent-blankline.nvim",
-        main = "ibl",
-        opts = {},
-    },
+    -- {
+    --     "lukas-reineke/indent-blankline.nvim",
+    --     main = "ibl",
+    --     opts = {},
+    -- },
 
     -- Formatter
     {
@@ -198,6 +198,28 @@ require("lazy").setup({
 
     -- Comment plugin
     { "tpope/vim-commentary", event = "VeryLazy" },
+
+    -- Git changes
+    {
+        "lewis6991/gitsigns.nvim",
+        event = "BufReadPre",
+        config = function()
+            require("gitsigns").setup({
+                signs = {
+                    add       = { text = "│" },
+                    change    = { text = "│" },
+                    delete    = { text = "_" },
+                    topdelete = { text = "‾" },
+                },
+                signcolumn = true, -- show in sign column
+                numhl = true,
+                linehl = false,
+                word_diff = false,
+                current_line_blame = false,
+                on_attach = function() end, -- no extra keymaps
+            })
+        end,
+    },
 
     -- Automatic insertion and deletion of a pair of characters
     {
