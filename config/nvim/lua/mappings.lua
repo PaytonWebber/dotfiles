@@ -13,14 +13,7 @@ vim.keymap.set("n", "<leader>fg", builtin.live_grep, {})
 vim.keymap.set("n", "<leader>fo", builtin.oldfiles, {})
 
 -- MiniFiles
-vim.keymap.set("n", "<leader>s", function()
-    require("mini.files").open()
-end)
-
--- Trouble
-vim.keymap.set("n", "<leader>xx", function()
-    require("trouble").open()
-end)
+vim.keymap.set("n", "<leader>s", "<Cmd>Neotree toggle<CR>")
 
 -- Harpoon
 local harpoon = require("harpoon")
@@ -33,5 +26,5 @@ vim.keymap.set("n", "<leader>3", function() harpoon:list():select(3) end)
 vim.keymap.set("n", "<leader>4", function() harpoon:list():select(4) end)
 
 -- Toggle previous & next buffers stored within Harpoon list
-vim.keymap.set("n", "<C-S-P>", function() harpoon:list():prev() end)
-vim.keymap.set("n", "<C-S-N>", function() harpoon:list():next() end)
+-- vim.keymap.set("n", "<C-S-P>", function() harpoon:list():prev() end)
+-- vim.keymap.set("n", "<C-S-N>", function() harpoon:list():next() end)

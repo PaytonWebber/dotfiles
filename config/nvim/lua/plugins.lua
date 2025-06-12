@@ -17,213 +17,78 @@ require("lazy").setup({
 
     ---------------------- THEMES -----------------------
 
-    -- Tokyonight
-    -- {
-    --     "folke/tokyonight.nvim",
-    --     lazy = false, -- load immediately
-    --     priority = 1000, -- load as early as possible
-    --     config = function()
-    --         require("config.tokyonight")
-    --         vim.cmd([[colorscheme tokyonight]])
-    --     end,
-    -- },
-
-    -- Catppuccin
-    -- {
-    --     "catppuccin/nvim",
-    --     lazy = false,    -- load immediately
-    --     priority = 1000, -- load as early as possible
-    --     config = function()
-    --         require("config.catppuccin")
-    --         vim.cmd([[colorscheme catppuccin]])
-    --     end,
-    -- },
-
-    -- Nordic
-    -- {
-    --     "AlexvZyl/nordic.nvim",
-    --     lazy = false, -- load immediately
-    --     priority = 1000, -- load as early as possible
-    --     config = function()
-    --         require("config.nordic")
-    --         vim.cmd([[colorscheme nordic]])
-    --     end,
-    -- },
-
-    -- Cyberdream
-    -- {
-    --     "scottmckendry/cyberdream.nvim",
-    --     lazy = false,
-    --     priority = 1000,
-    --     config = function()
-    --         require("config.cyberdream")
-    --         vim.cmd([[colorscheme cyberdream]])
-    --     end,
-    -- },
-
-    -- Gruvbox
+    -- Github
     {
-        "ellisonleao/gruvbox.nvim",
+        "projekt0n/github-nvim-theme",
+        name = "github-theme",
         lazy = false,
         priority = 1000,
         config = function()
-            require("config.gruvbox")
-            vim.cmd([[colorscheme gruvbox]])
+            require("github-theme").setup({})
+
+            vim.cmd("colorscheme github_dark_default")
         end,
     },
-
-    -- Kanagawa
-    -- {
-    --     "rebelot/kanagawa.nvim",
-    --     lazy = false, -- load immediately
-    --     priority = 1000, -- load as early as possible
-    --     config = function()
-    --         require("config.kanagawa")
-    --         vim.cmd([[colorscheme kanagawa]])
-    --     end,
-    -- },
-
-    -- Rose-Pine
-    -- {
-    --     "rose-pine/neovim",
-    --     lazy = false, -- load immediately
-    --     priority = 1000, -- load as early as possible
-    --     config = function()
-    --         require("config.rose-pine")
-    --         vim.cmd([[colorscheme rose-pine]])
-    --     end,
-    -- },
-
-    -- Dracula
-    -- {
-    --     "Mofiqul/dracula.nvim",
-    --     lazy = false, -- load immediately
-    --     priority = 1000, -- load as early as possible
-    --     config = function()
-    --         -- require("config.dracula")
-    --         vim.cmd([[colorscheme dracula]])
-    --     end,
-    -- },
 
     ------------------------------------------------------
-
-    -- CoPilot built with Lua
-    -- {
-    --     "zbirenbaum/copilot.lua",
-    --     cmd = "Copilot",
-    --     event = "InsertEnter",
-    --     config = function()
-    --         require("copilot").setup({})
-    --     end,
-    -- },
-
-    -- CoPilot built with Vimscript
-    -- { "github/copilot.vim" },
-
-    {
-        "VonHeikemen/lsp-zero.nvim",
-        branch = "v3.x",
-        lazy = true,
-        config = false,
-        init = function()
-            -- Disable automatic setup, we are doing it manually
-            vim.g.lsp_zero_extend_cmp = 0
-            vim.g.lsp_zero_extend_lspconfig = 0
-        end,
-    },
-
-    {
-        "williamboman/mason.nvim",
-        lazy = false,
-        config = true,
-    },
-
-    -- Autocompletion
-
-    {
-        "L3MON4D3/LuaSnip",
-        version = "v2.3.0",
-    },
-
-    {
-        "hrsh7th/nvim-cmp",
-        event = "InsertEnter",
-        config = function()
-            local lsp_zero = require("lsp-zero")
-            lsp_zero.extend_cmp()
-
-            local cmp = require("cmp")
-            local cmp_action = lsp_zero.cmp_action()
-
-            cmp.setup({
-                formatting = lsp_zero.cmp_format(),
-
-                snippet = {
-                    expand = function(args)
-                        require('luasnip').lsp_expand(args.body)
-                    end,
-                },
-
-                window = {
-                    completion = cmp.config.window.bordered(),
-                    documentation = cmp.config.window.bordered(),
-                },
-                mapping = cmp.mapping.preset.insert({
-                    ["<C-y>"] = cmp.mapping.complete(),
-                    ["<C-u>"] = cmp.mapping.scroll_docs(-4),
-                    ["<C-d>"] = cmp.mapping.scroll_docs(4),
-                    ["<CR>"] = cmp.mapping.confirm({ select = true }),
-                    ["<C-e>"] = cmp.mapping.abort(),
-                }),
-            })
-
-            sources = cmp.config.sources({
-                { name = 'luasnip' },
-            }, {
-                { name = 'buffer' },
-            })
-        end,
-    },
-
     -- LSP
+    {
+        "saghen/blink.cmp",
+        dependencies = { "rafamadriz/friendly-snippets" },
+
+        version = "1.*",
+
+        opts = {
+            keymap = { preset = "enter" },
+
+            appearance = {
+                nerd_font_variant = "mono",
+            },
+
+            completion = { documentation = { auto_show = false } },
+
+            sources = {
+                default = { "lsp", "path", "snippets", "buffer" },
+            },
+
+            fuzzy = { implementation = "prefer_rust_with_warning" },
+        },
+        opts_extend = { "sources.default" },
+    },
+
+
     {
         "neovim/nvim-lspconfig",
         cmd = { "LspInfo", "LspInstall", "LspStart" },
         event = { "BufReadPre", "BufNewFile" },
         dependencies = {
-            { "hrsh7th/cmp-nvim-lsp" },
-            { "williamboman/mason-lspconfig.nvim" },
+            { "saghen/blink.cmp" },
         },
-        config = function()
-            local lsp_zero = require("lsp-zero")
-            lsp_zero.extend_lspconfig()
-
-            lsp_zero.on_attach(function(client, bufnr)
-                lsp_zero.default_keymaps({ buffer = bufnr })
-            end)
-
-            require("mason-lspconfig").setup({
-                ensure_installed = {},
-                handlers = {
-                    lsp_zero.default_setup,
-                    lua_ls = function()
-                        local lua_opts = lsp_zero.nvim_lua_ls()
-                        require("lspconfig").lua_ls.setup(lua_opts)
-                    end,
-                },
-            })
+        opts = {
+            servers = {
+                clangd = {},
+                lua_ls = {},
+                rust_analyzer = {},
+            },
+        },
+        config = function(_, opts)
+            local lspconfig = require('lspconfig')
+            for server, config in pairs(opts.servers) do
+                config.capabilities = require('blink.cmp').get_lsp_capabilities(config.capabilitites)
+                lspconfig[server].setup(config)
+            end
         end,
     },
 
     -- Rust Tools
     {
-        'mrcjkb/rustaceanvim',
-        version = '^5', -- Recommended
+        "mrcjkb/rustaceanvim",
+        version = "^6", -- Recommended
         lazy = false,   -- This plugin is already lazy
     },
 
     -- Debug Adapter Protocol (DAP) for Rust LSP
-    { 'mfussenegger/nvim-dap' },
+    { "mfussenegger/nvim-dap" },
 
     -- Treesitter
     {
@@ -235,19 +100,10 @@ require("lazy").setup({
         end,
     },
 
-    {
-        "nvim-treesitter/nvim-treesitter-context",
-        event = "BufRead",
-        config = function()
-            require("config.treesitter-context")
-        end,
-    },
-
     -- Telescope
     {
         "nvim-telescope/telescope.nvim",
         branch = "0.1.x",
-        cmd = "Telescope",
         dependencies = {
             { "nvim-lua/plenary.nvim" },
         },
@@ -261,11 +117,15 @@ require("lazy").setup({
 
     -- File explorer
     {
-        "echasnovski/mini.files",
-        version = false,
-        config = function()
-            require("config.mini-files")
-        end,
+        "nvim-neo-tree/neo-tree.nvim",
+        branch = "v3.x",
+        dependencies = {
+            "nvim-lua/plenary.nvim",
+            "nvim-tree/nvim-web-devicons",
+            "MunifTanjim/nui.nvim",
+        },
+        lazy = false,
+        opts = {},
     },
 
     -- Fancy statusline
@@ -277,47 +137,31 @@ require("lazy").setup({
         end,
     },
 
-    -- Fancy start screen
-    {
-        "nvimdev/dashboard-nvim",
-        config = function()
-            require("config.dashboard-nvim")
-        end,
-        dependencies = { "nvim-tree/nvim-web-devicons" },
-    },
-
     -- In-line diagnostics
     {
-        "folke/trouble.nvim",
-        cmd = "Trouble",
-        dependencies = { "nvim-tree/nvim-web-devicons" },
-        opts = {
-            icons = true,
-        },
+        'dgagn/diagflow.nvim',
+        event = 'LspAttach',
+        opts = {}
     },
 
     -- Highlighter for todo's
     {
         "folke/todo-comments.nvim",
         dependencies = { "nvim-lua/plenary.nvim" },
-        config = function()
-            require("config.todo-comments")
-        end,
+        opts = {}
     },
 
     -- Tmux better movements
     {
         "christoomey/vim-tmux-navigator",
-        lazy = false,
+        event = "VeryLazy",
     },
 
     -- Show indentation levels
     {
         "lukas-reineke/indent-blankline.nvim",
-        event = "BufRead",
-        config = function()
-            require("config.indent")
-        end,
+        main = "ibl",
+        opts = {},
     },
 
     -- Formatter
@@ -335,29 +179,13 @@ require("lazy").setup({
         event = "VeryLazy",
         keys = {
             {
-                "s",
+                "gw",
                 mode = { "n", "x", "o" },
                 function()
                     require("flash").jump()
                 end,
                 desc = "Flash",
-            },
-            {
-                "S",
-                mode = { "n", "x", "o" },
-                function()
-                    require("flash").treesitter()
-                end,
-                desc = "Flash Treesitter",
-            },
-            {
-                "R",
-                mode = { "o", "x" },
-                function()
-                    require("flash").treesitter_search()
-                end,
-                desc = "Treesitter Search",
-            },
+            }
         },
     },
 
@@ -365,21 +193,17 @@ require("lazy").setup({
     {
         "ThePrimeagen/harpoon",
         branch = "harpoon2",
-        dependencies = { "nvim-lua/plenary.nvim" }
+        dependencies = { "nvim-lua/plenary.nvim" },
     },
-
-    -- Modern matchit implementation
-    { "andymass/vim-matchup", event = "BufRead" },
 
     -- Comment plugin
     { "tpope/vim-commentary", event = "VeryLazy" },
 
     -- Automatic insertion and deletion of a pair of characters
-    { "Raimondi/delimitMate", event = "InsertEnter" },
-
-    -- Surround plugin
-    { "tpope/vim-surround",   event = "VeryLazy" },
-
-    -- The missing auto-completion for cmdline!
-    { "gelguy/wilder.nvim" },
+    {
+        'windwp/nvim-autopairs',
+        event = "InsertEnter",
+        config = true,
+        opts = {}
+    },
 })

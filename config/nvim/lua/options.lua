@@ -1,5 +1,5 @@
 -- Line numbers
-vim.opt.nu = true
+vim.opt.nu = false
 vim.opt.relativenumber = true
 vim.opt.fillchars = { eob = " " }
 
