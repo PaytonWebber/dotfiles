@@ -1,5 +1,6 @@
-(include "widgets/clock.yuck")
 (include "widgets/workspaces.yuck")
+(include "widgets/clock.yuck")
+(include "widgets/battery.yuck")
 
 (defwidget main_bar []
   (centerbox :orientation "h" :class "bar"
@@ -7,7 +8,7 @@
     (box :class "center" :halign "start" :hexpand false :vexpand false
       (workspaces))
     (box :class "right" :halign "end" :hexpand false :vexpand false
-    (clock))
+    (clock)(battery))
   )
 )
 

@@ -1,6 +1,7 @@
 !#/bin/env bash
 
-waybar &
-swww init
-swww img /home/payton/Pictures/backgrounds/pixel_evening.jpg
+eww daemon
+eww open main_bar
+swww-daemon
+swww img /home/payton/wallpapers/solar-system.jpg
 dunst
