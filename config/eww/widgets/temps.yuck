@@ -1,0 +1,10 @@
+(defwidget temps []
+  (box :class "module temps-module" 
+       :orientation "h" 
+       :spacing 8
+       :space-evenly false
+    (label :class "temp-item ${EWW_TEMPS.K10TEMP_TCTL > 80 ? 'hot' : EWW_TEMPS.K10TEMP_TCTL > 60 ? 'warm' : 'cool'}"
+           :text "CPU ${round(EWW_TEMPS.K10TEMP_TCTL, 0)}°")
+    (label :class "temp-separator" :text "|")
+    (label :class "temp-item ${EWW_TEMPS.AMDGPU_EDGE > 80 ? 'hot' : EWW_TEMPS.AMDGPU_EDGE > 60 ? 'warm' : 'cool'}"
+           :text "GPU ${round(EWW_TEMPS.AMDGPU_EDGE, 0)}°")))

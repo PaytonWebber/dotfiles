@@ -1,43 +1,128 @@
 * {
   all: unset;
   font-family: JetBrainsMono Nerd Font;
-  font-size: 13px;
+  font-size: 12px;
   font-weight: bold;
 }
 
+/* === Base Styles === */
 tooltip {
-  background: #282828; 
-}
-
-progressbar > trough {
-  min-width: 50px;
-}
-
-.module {
-    background: #282828; 
-    margin-right: 8px;
-    padding: 0 10px;
+  background: #282828;
+  border: 1px solid #ffbd5e;
+  border-radius: 8px;
+  padding: 8px 12px;
 }
 
 .bar {
-    background: #282828; 
-    border-radius: 15px; 
-    border: 2px solid #ffbd5e;
+  background: #282828;
+  border-radius: 12px;
+  border: 2px solid #ffbd5e;
+  padding: 1px 4px;
 }
 
+.module {
+  background: #282828;
+  margin: 0 2px;
+  padding: 3px 10px;
+  border-radius: 6px;
+  transition: background 0.2s ease;
+}
+
+.module:hover {
+  background: #3c3836;
+}
+
+/* === Workspace === */
 .workspace {
   border-radius: 30px;
-  padding: 8px;
-
-  &__1 {
-    color: #a89984;
-  }
+  padding: 3px 6px;
+  margin: 0 4px;
+  color: #a89984;
+  transition: color 0.2s ease, background 0.2s ease;
 }
 
+.workspace:hover {
+  color: #ebdbb2;
+  background: #3c3836;
+}
+
+/* === Temps Module === */
+.temps-module {
+  padding: 3px 10px;
+  margin: 0 2px;
+}
+
+.temp-item {
+  transition: color 0.3s ease;
+  margin: 0 6px;
+}
+
+.temp-item.cool {
+  color: #a3be8c;
+}
+
+.temp-item.warm {
+  color: #ebcb8b;
+}
+
+.temp-item.hot {
+  color: #bf616a;
+}
+
+.temp-icon {
+  opacity: 0.85;
+  font-size: 13px;
+  margin-right: 3px;
+}
+
+.temp-value {
+  font-family: JetBrainsMono Nerd Font Mono;
+  letter-spacing: 0.5px;
+}
+
+.temp-separator {
+  color: #665c54;
+  opacity: 0.5;
+  font-weight: normal;
+}
+
+/* === Clock & Battery === */
 .clock {
-  font-size: 14px;
+  font-size: 13px;
+  color: #ebdbb2;
+  padding: 0;
+  margin: 0;
 }
 
 .battery {
+  font-size: 13px;
+  color: #ebdbb2;
+  padding: 0;
+  margin: 0;
+}
+
+/* === Network Module === */
+.network-module {
+  padding: 3px 10px;
+  margin: 0 2px;
+}
+
+.net-icon {
   font-size: 14px;
+  transition: color 0.3s ease;
+}
+
+.net-icon.connected {
+  color: #b8bb26;
+}
+
+.net-icon.disconnected {
+  color: #fb4934;
+}
+
+.net-signal {
+  font-family: JetBrainsMono Nerd Font Mono;
+  font-size: 11px;
+  color: #a89984;
+  margin-left: 3px;
 }

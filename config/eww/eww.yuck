@@ -4,8 +4,8 @@
     	   :monitor 0
     	   :geometry (geometry :x "0px"
             	               :y "0px"
-                    	       :width "1910px"
-                             :height "15px"
+                    	       :width "1430px"
+                             :height "2px"
     	                       :anchor "top center")
         :stacking "fg"
         :exclusive true

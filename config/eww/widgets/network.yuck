@@ -1,0 +1,18 @@
+(deflisten network_info :initial '{"connected": false, "signal": 0, "ssid": ""}' 
+  "scripts/network.sh")
+
+(defwidget network []
+  (box :class "module network-module"
+       :orientation "h"
+       :spacing 6
+       :space-evenly false
+       :tooltip "${network_info.connected ? 'Connected to: ' + network_info.ssid : 'Disconnected'}"
+    (label :class "net-icon ${network_info.connected ? 'connected' : 'disconnected'}"
+           :text "${network_info.connected ? 
+                   (network_info.signal >= 75 ? '󰤨' :
+                    network_info.signal >= 50 ? '󰤥' :
+                    network_info.signal >= 25 ? '󰤢' : '󰤟') 
+                   : '󰤭'}")
+    (label :class "net-signal"
+           :visible "${network_info.connected}"
+           :text "${network_info.signal}%")))

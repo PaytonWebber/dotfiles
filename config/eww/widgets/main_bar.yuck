@@ -1,14 +1,29 @@
 (include "widgets/workspaces.yuck")
 (include "widgets/clock.yuck")
 (include "widgets/battery.yuck")
+(include "widgets/temps.yuck")
+(include "widgets/network.yuck")
 
 (defwidget main_bar []
   (centerbox :orientation "h" :class "bar"
-    (box :class "left" :halign "start" :hexpand false :vexpand false)
-    (box :class "center" :halign "start" :hexpand false :vexpand false
+    (box :class "left" 
+         :halign "start" 
+         :hexpand false 
+         :vexpand false)
+    (box :class "center" 
+         :halign "start" 
+         :hexpand false 
+         :vexpand false
       (workspaces))
-    (box :class "right" :halign "end" :hexpand false :vexpand false
-    (clock)(battery))
+    (box :class "right" 
+         :halign "end" 
+         :hexpand false 
+         :vexpand false
+         :spacing 1
+         :space-evenly false
+      (temps)
+      (network)
+      (clock)
+      (battery))
   )
 )
-
