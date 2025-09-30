@@ -8,8 +8,16 @@
 	imports =
 	[ # Include the results of the hardware scan.
 		./hardware-configuration.nix
-		<nixos-hardware/framework/13-inch/7040-amd>
+		./wireguard.nix
+		<home-manager/nixos>
 	];
+
+	home-manager = {
+	  useGlobalPkgs = true;
+	  useUserPackages = true;
+	  backupFileExtension = "backup";
+	  users.payton = import ./home.nix;
+	};
 
 	# Bootloader.
 	boot = {
@@ -22,6 +30,31 @@
 		kernelParams = [ "amd_pstate=active" ];
 	};
 
+	# for firmware updates
+	services.fwupd.enable = true;
+
+	# fingerprint scanner
+	services.fprintd.enable = true;
+	services.fprintd.tod.enable = true;
+	services.fprintd.tod.driver = pkgs.libfprint-2-tod1-goodix;
+	security.pam.services.login.fprintAuth = lib.mkForce true;
+	security.pam.services.sudo.fprintAuth = true;
+	security.pam.services.gdm.fprintAuth = true;
+	security.pam.services.hyprlock = {
+  text = ''
+	    auth    [success=1 default=ignore] pam_fprintd.so max_tries=5
+	    auth    required                   pam_unix.so
+	  '';
+	};
+
+
+	# 1password
+	programs._1password.enable = true;
+  programs._1password-gui = {
+    enable = true;
+    polkitPolicyOwners = [ "payton" ];
+  };
+
 	networking = {
 		hostName = "framework";
 		networkmanager.enable = true;
@@ -33,6 +66,7 @@
 
 	# Select internationalisation properties.
 	i18n.defaultLocale = "en_CA.UTF-8";
+        services.xserver.xkb.options = "caps:swapescape";
 
 	services = {
 		xserver = {
@@ -41,7 +75,6 @@
 			xkb = {
 				layout = "us";
 				variant = "";
-				options = "escape:swapcaps";
 			};
 		};
 		
@@ -56,8 +89,14 @@
 		};
 	};
 	
-	xdg.portal = {
-		enable = true;
+	xdg = {
+	  portal = {
+	    enable = true;
+	    extraPortals = with pkgs; [
+		    xdg-desktop-portal-wlr
+		    xdg-desktop-portal-gtk
+	  	];
+  	};
 	};
 	
 	programs = {
@@ -68,7 +107,6 @@
 		light.enable = true;
 	};
 
-	sound.enable = true;
 	hardware = {
 		# AMD microcode updates
 		cpu.amd.updateMicrocode = true;
@@ -86,21 +124,28 @@
 		packages = with pkgs; [
 			
 			# Desktop
-			hyprland
+			# hyprland
+			hyprlock
+			hypridle
 			libnotify
-			waybar
 			swww
+			eww
 			dunst
 			light
 
 			# Applications
 			firefox
+			obsidian
+			qutebrowser
 			discord
 			zathura
-      fuzzel
+			fuzzel
 
 			# Misc
 			bat
+			yazi
+			hyprshot
+			claude-code
 		];
 	};
 
@@ -118,15 +163,36 @@
 		};
 	};
 
+	environment.sessionVariables.NIXOS_OZONE_WL = "1";
 	environment.systemPackages = with pkgs; [
 
+	  (pkgs.wrapOBS {
+	    plugins = with pkgs.obs-studio-plugins; [
+	      wlrobs
+	      obs-backgroundremoval
+	      obs-pipewire-audio-capture
+	      obs-vaapi #optional AMD hardware acceleration
+	      obs-gstreamer
+	      obs-vkcapture
+	    ];
+	  })
+	  mpv
+
 		# Util Functions
+		wireguard-tools
 		magic-wormhole
 		unzip
 		wget
 		curl
 		wireplumber
 		wl-clipboard
+		fzf
+		fd
+		ripgrep
+		pyenv
+		zoxide
+		acpi
+		delta
 
 		# Development Environment
 		gh
@@ -136,23 +202,33 @@
 		eza
 		clang
 		neovim
-		ranger
+		helix
 		fish
 		kitty
 		gnumake
 		nodejs_20
+		jq
+		socat
+		cmake
+		pkg-config
+		clang-tools
+		lldb_21
 
 		# TUI Utils
-    fastfetch
+		fastfetch
 		tmux
 		htop
+		btop
+		starship
+		rose-pine-hyprcursor
+
+		slack
 
 	];
 
 	fonts.packages = with pkgs; [
-		(nerdfonts.override { fonts = [ "JetBrainsMono" ]; })
+		nerd-fonts.jetbrains-mono
 	];
-
 	
 	system.stateVersion = "25.05";
 }
