@@ -1,0 +1,35 @@
+(defpoll current_song :interval "200ms" :initial "{}" 
+  "playerctl metadata --format '{\"title\": \"{{title}}\", \"artist\": \"{{artist}}\", \"album\": \"{{album}}\", \"status\": \"{{status}}\"}' 2>/dev/null || echo '{\"title\": \"No media\", \"artist\": \"\", \"album\": \"\", \"status\": \"Stopped\"}'")
+
+(defwidget audio []
+  (box :class "audio-widget" 
+       :orientation "h" 
+       :space-evenly false
+       :halign "start"
+       :visible "${current_song.title != 'No media'}"
+    (box :class "audio-info"
+         :orientation "h"
+         :space-evenly false
+      (label :class "audio-title" 
+             :text "${current_song.title}" 
+             :limit-width 20)
+      (label :class "audio-separator" 
+             :text "•")
+      (label :class "audio-artist" 
+             :text "${current_song.artist}" 
+             :limit-width 15))
+    (box :class "audio-controls"
+         :orientation "h"
+         :space-evenly false
+      (button :class "audio-btn"
+              :onclick "playerctl previous"
+              :tooltip "Previous"
+              "⏮")
+      (button :class "audio-btn play-btn"
+              :onclick "playerctl play-pause"
+              :tooltip "${current_song.status == 'Playing' ? 'Pause' : 'Play'}"
+              "${current_song.status == 'Playing' ? '⏸' : '▶'}")
+      (button :class "audio-btn"
+              :onclick "playerctl next" 
+              :tooltip "Next"
+              "⏭"))))

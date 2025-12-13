@@ -46,6 +46,48 @@ tooltip {
   background: #3c3836;
 }
 
+/* Focused workspace on primary monitor (monitor 0) - white */
+.workspace__0 {
+  border-radius: 30px;
+  padding: 3px 6px;
+  margin: 0 4px;
+  color: #ffffff;
+  transition: color 0.2s ease, background 0.2s ease;
+}
+
+.workspace__0:hover {
+  color: #ffffff;
+  background: #3c3836;
+}
+
+/* Focused workspace on secondary monitor (monitor 1) - yellow */
+.workspace__1 {
+  border-radius: 30px;
+  padding: 3px 6px;
+  margin: 0 4px;
+  color: #ffbd5e;
+  transition: color 0.2s ease, background 0.2s ease;
+}
+
+.workspace__1:hover {
+  color: #ffbd5e;
+  background: #3c3836;
+}
+
+/* Focused workspace on tertiary monitor (monitor 2) - blue */
+.workspace__2 {
+  border-radius: 30px;
+  padding: 3px 6px;
+  margin: 0 4px;
+  color: #7fc7ff;
+  transition: color 0.2s ease, background 0.2s ease;
+}
+
+.workspace__2:hover {
+  color: #7fc7ff;
+  background: #3c3836;
+}
+
 /* === Temps Module === */
 .temps-module {
   padding: 3px 10px;
@@ -125,4 +167,69 @@ tooltip {
   font-size: 11px;
   color: #a89984;
   margin-left: 3px;
+}
+
+/* === Audio Widget === */
+.audio-widget {
+  padding: 0 4px;
+  margin: 0 2px;
+  background: transparent;
+}
+
+.audio-widget:hover {
+  background: rgba(60, 56, 54, 0.2);
+}
+
+.audio-info {
+  margin-right: 8px;
+}
+
+.audio-title {
+  color: #ebdbb2;
+  font-size: 11px;
+  font-weight: bold;
+  margin-right: 4px;
+}
+
+.audio-separator {
+  color: #665c54;
+  font-size: 10px;
+  opacity: 0.6;
+  margin-right: 4px;
+}
+
+.audio-artist {
+  color: #a89984;
+  font-size: 10px;
+  font-weight: normal;
+  opacity: 0.8;
+}
+
+.audio-controls {
+}
+
+.audio-btn {
+  background: transparent;
+  border: none;
+  color: #a89984;
+  font-size: 10px;
+  padding: 0 2px;
+  border-radius: 2px;
+  min-width: 16px;
+  margin-right: 2px;
+}
+
+.audio-btn:hover {
+  background: rgba(168, 153, 132, 0.2);
+  color: #ebdbb2;
+}
+
+.play-btn {
+  color: #b8bb26;
+  font-size: 11px;
+}
+
+.play-btn:hover {
+  color: #d5c4a1;
+  background: rgba(184, 187, 38, 0.2);
 }

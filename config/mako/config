@@ -1,0 +1,33 @@
+# Default configuration
+font=JetBrainsMono Nerd 10
+format=<b>%s</b>\n%b
+sort=+time
+text-alignment=center
+width=250
+height=100
+margin=10
+padding=8
+border-size=2
+border-radius=5
+border-color=#585858
+background-color=#282828FF
+text-color=#ebdbb2FF
+default-timeout=20000
+
+# Low urgency notifications
+[urgency=low]
+background-color=#282828FF
+text-color=#ebdbb2FF
+default-timeout=5000
+
+# Normal urgency notifications
+[urgency=normal]
+background-color=#282828FF
+text-color=#ebdbb2FF
+default-timeout=20000
+
+# Critical urgency notifications
+[urgency=critical]
+background-color=#282828FF
+text-color=#ebdbb2FF
+default-timeout=0

@@ -3,13 +3,15 @@
 (include "widgets/battery.yuck")
 (include "widgets/temps.yuck")
 (include "widgets/network.yuck")
+(include "widgets/audio.yuck")
 
 (defwidget main_bar []
   (centerbox :orientation "h" :class "bar"
     (box :class "left" 
          :halign "start" 
          :hexpand false 
-         :vexpand false)
+         :vexpand false
+      (audio))
     (box :class "center" 
          :halign "start" 
          :hexpand false 
