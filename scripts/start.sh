@@ -3,5 +3,5 @@
 eww daemon
 eww open main_bar
 swww-daemon
-swww img /home/payton/wallpapers/solar-system.jpg
-dunst
+swww img /home/payton/wallpapers/painting_2.png
+mako
