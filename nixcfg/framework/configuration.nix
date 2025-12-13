@@ -47,18 +47,38 @@
 	  '';
 	};
 
-
-	# 1password
-	programs._1password.enable = true;
-  programs._1password-gui = {
-    enable = true;
-    polkitPolicyOwners = [ "payton" ];
-  };
+	services.auto-cpufreq.enable = true;
+	services.auto-cpufreq.settings = {
+	  battery = {
+	     governor = "powersave";
+	     turbo = "never";
+	  };
+	  charger = {
+	     governor = "performance";
+	     turbo = "auto";
+	  };
+	};
 
 	networking = {
 		hostName = "framework";
 		networkmanager.enable = true;
 	};
+
+	# Enable common container config files in /etc/containers
+  virtualisation.containers.enable = true;
+  virtualisation = {
+    podman = {
+      enable = true;
+      # Create a `docker` alias for podman, to use it as a drop-in replacement
+      dockerCompat = true;
+      # Required for containers under podman-compose to be able to talk to each other.
+      defaultNetwork.settings.dns_enabled = true;
+    };
+  };
+
+	# For gnome-calendar
+	programs.dconf.enable = true;
+  services.gnome.evolution-data-server.enable = true;
 
 	# Set your time zone.
 	time.timeZone = "America/Vancouver";
@@ -101,7 +121,7 @@
 	
 	programs = {
 		hyprland.enable = true;
-		waybar.enable = true;
+		# niri.enable = true;
 		fish.enable = true;
 		thunar.enable = true;
 		light.enable = true;
@@ -124,28 +144,28 @@
 		packages = with pkgs; [
 			
 			# Desktop
-			# hyprland
+			# dunst
 			hyprlock
 			hypridle
+			hyprshot
+			mako
+			fuzzel
 			libnotify
 			swww
 			eww
-			dunst
-			light
 
 			# Applications
 			firefox
+			jellyfin-media-player
+			gnome-calendar
+			bluetui
 			obsidian
-			qutebrowser
 			discord
 			zathura
-			fuzzel
 
 			# Misc
 			bat
 			yazi
-			hyprshot
-			claude-code
 		];
 	};
 
@@ -164,7 +184,11 @@
 	};
 
 	environment.sessionVariables.NIXOS_OZONE_WL = "1";
+	environment.variables = {
+	  GTK_THEME = "Adwaita:dark";
+	};
 	environment.systemPackages = with pkgs; [
+		
 
 	  (pkgs.wrapOBS {
 	    plugins = with pkgs.obs-studio-plugins; [
@@ -178,7 +202,18 @@
 	  })
 	  mpv
 
+	  dive # look into docker image layers
+    podman-tui # status of containers in the terminal
+    docker-compose # start group of containers for dev
+
+	  libreoffice-fresh
+	  hunspell
+	  hunspellDicts.en-ca-large
+
+	  hyprsunset
+
 		# Util Functions
+		playerctl
 		wireguard-tools
 		magic-wormhole
 		unzip
@@ -193,26 +228,40 @@
 		zoxide
 		acpi
 		delta
+		packer
 
 		# Development Environment
 		gh
 		go
 		gdb
 		git
+		glibc
+		openssl
+		zlib
+		systemd
+		libuuid
+		libcap
 		eza
 		clang
 		neovim
 		helix
+		planify
 		fish
 		kitty
 		gnumake
 		nodejs_20
+		bun
+		pnpm
 		jq
 		socat
 		cmake
 		pkg-config
 		clang-tools
 		lldb_21
+		typescript
+	  typescript-language-server
+
+	  wayland
 
 		# TUI Utils
 		fastfetch
@@ -223,12 +272,11 @@
 		rose-pine-hyprcursor
 
 		slack
-
-	];
+];
 
 	fonts.packages = with pkgs; [
 		nerd-fonts.jetbrains-mono
 	];
 	
-	system.stateVersion = "25.05";
+	system.stateVersion = "25.11";
 }
