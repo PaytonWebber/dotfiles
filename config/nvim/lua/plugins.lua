@@ -69,6 +69,7 @@ require("lazy").setup({
                 clangd = {},
                 lua_ls = {},
                 rust_analyzer = {},
+                zls = {},
             },
         },
         config = function(_, opts)
