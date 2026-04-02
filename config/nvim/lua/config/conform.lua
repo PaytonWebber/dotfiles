@@ -7,7 +7,7 @@ require("conform").setup({
 		go = { "gofmt" },
 	},
 	format_on_save = {
-		lsp_fallback = true,
+		lsp_format = "fallback",
 		timeout_ms = 1000,
 	},
 	notify_on_error = true,

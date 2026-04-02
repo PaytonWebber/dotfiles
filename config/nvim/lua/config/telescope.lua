@@ -39,12 +39,8 @@ require("telescope").setup({
 			sorting_strategy = "ascending",
 		},
 		spell_suggest = themes.get_cursor(),
-		lsp_workspace_symbols = {
-			symbol_highlights = symbol_highlights,
-		},
-		lsp_document_symbols = {
-			symbol_highlights = symbol_highlights,
-		},
+		lsp_workspace_symbols = {},
+		lsp_document_symbols = {},
 		commands = themes.get_dropdown(),
 	},
 	extensions = {

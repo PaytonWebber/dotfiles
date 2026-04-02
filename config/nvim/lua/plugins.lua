@@ -1,6 +1,6 @@
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 
-if not vim.loop.fs_stat(lazypath) then
+if not vim.uv.fs_stat(lazypath) then
     vim.fn.system({
         "git",
         "clone",
@@ -67,16 +67,18 @@ require("lazy").setup({
         opts = {
             servers = {
                 clangd = {},
+                dartls = {},
                 lua_ls = {},
                 rust_analyzer = {},
+                ts_ls = {},
                 zls = {},
             },
         },
         config = function(_, opts)
-            local lspconfig = require('lspconfig')
             for server, config in pairs(opts.servers) do
                 config.capabilities = require('blink.cmp').get_lsp_capabilities(config.capabilities)
-                lspconfig[server].setup(config)
+                vim.lsp.config(server, config)
+                vim.lsp.enable(server)
             end
         end,
     },
@@ -104,7 +106,7 @@ require("lazy").setup({
     -- Telescope
     {
         "nvim-telescope/telescope.nvim",
-        branch = "0.1.x",
+        branch = "master",
         dependencies = {
             { "nvim-lua/plenary.nvim" },
         },
@@ -197,8 +199,6 @@ require("lazy").setup({
         dependencies = { "nvim-lua/plenary.nvim" },
     },
 
-    -- Comment plugin
-    { "tpope/vim-commentary", event = "VeryLazy" },
 
     -- Git changes
     {
@@ -218,6 +218,20 @@ require("lazy").setup({
                 word_diff = false,
                 current_line_blame = false,
                 on_attach = function() end, -- no extra keymaps
+            })
+        end,
+    },
+
+    -- AI code completion (Supermaven)
+    {
+        "supermaven-inc/supermaven-nvim",
+        config = function()
+            require("supermaven-nvim").setup({
+                keymaps = {
+                    accept_suggestion = "<Tab>",
+                    clear_suggestion = "<C-]>",
+                    accept_word = "<C-j>",
+                },
             })
         end,
     },
