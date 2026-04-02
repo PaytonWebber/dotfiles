@@ -1,5 +1,5 @@
-(defpoll current_song :interval "200ms" :initial "{}" 
-  "playerctl metadata --format '{\"title\": \"{{title}}\", \"artist\": \"{{artist}}\", \"album\": \"{{album}}\", \"status\": \"{{status}}\"}' 2>/dev/null || echo '{\"title\": \"No media\", \"artist\": \"\", \"album\": \"\", \"status\": \"Stopped\"}'")
+(defpoll current_song :interval "1s" :initial "{\"title\": \"No media\", \"artist\": \"\", \"status\": \"Stopped\"}"
+  "playerctl metadata --format '{\"title\": \"{{title}}\", \"artist\": \"{{artist}}\", \"status\": \"{{status}}\"}' 2>/dev/null || echo '{\"title\": \"No media\", \"artist\": \"\", \"status\": \"Stopped\"}'")
 
 (defwidget audio []
   (box :class "audio-widget" 
@@ -24,12 +24,12 @@
       (button :class "audio-btn"
               :onclick "playerctl previous"
               :tooltip "Previous"
-              "⏮")
+              "󰒮")
       (button :class "audio-btn play-btn"
               :onclick "playerctl play-pause"
               :tooltip "${current_song.status == 'Playing' ? 'Pause' : 'Play'}"
-              "${current_song.status == 'Playing' ? '⏸' : '▶'}")
+              "${current_song.status == 'Playing' ? '󰏤' : '󰐊'}")
       (button :class "audio-btn"
-              :onclick "playerctl next" 
+              :onclick "playerctl next"
               :tooltip "Next"
-              "⏭"))))
+              "󰒭"))))

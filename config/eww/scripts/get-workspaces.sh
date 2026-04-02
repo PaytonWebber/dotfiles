@@ -2,37 +2,27 @@
 
 set -euo pipefail
 
-readonly NUM_WS=5
-readonly SOCKET="$XDG_RUNTIME_DIR/hypr/$HYPRLAND_INSTANCE_SIGNATURE/.socket2.sock"
+WS_START=${1:?Usage: get-workspaces.sh <start> <end>}
+WS_END=${2:?Usage: get-workspaces.sh <start> <end>}
 
 get_workspaces() {
-  local monitors workspaces active_monitors active_workspaces
-  
-  monitors=$(hyprctl monitors -j) || return 1
-  workspaces=$(hyprctl workspaces -j) || return 1
-  
-  active_monitors=$(jq -c '[.[].activeWorkspace.id]' <<< "$monitors")
-  active_workspaces=$(jq -c '[.[] | select(.windows > 0) | .id]' <<< "$workspaces")
-  
+  local workspaces
+  workspaces=$(swaymsg -t get_workspaces -r) || return 1
+
   jq -c -n \
-    --argjson num_ws "$NUM_WS" \
-    --argjson active_monitors "$active_monitors" \
-    --argjson active_workspaces "$active_workspaces" '
-    [range(1; $num_ws + 1) | {
-      workspace_id: .,
-      focused: {
-        value: (. as $i | $active_monitors | any(. == $i)),
-        monitor: (. as $i | $active_monitors | index($i))
-      },
-      active: (. as $i | $active_workspaces | any(. == $i))
+    --argjson start "$WS_START" \
+    --argjson end "$WS_END" \
+    --argjson workspaces "$workspaces" '
+    [range($start; $end + 1) | . as $i | {
+      workspace_id: $i,
+      focused: ($workspaces | any(.num == $i and .focused)),
+      active: ($workspaces | any(.num == $i and .representation != null))
     }]'
 }
 
-# Initial output
 get_workspaces || exit 1
 
-# Monitor for changes
-socat -u "UNIX-CONNECT:$SOCKET" - 2>/dev/null | 
-  while IFS= read -r event; do
-    [[ "$event" == *workspace* ]] && get_workspaces
+swaymsg -t subscribe '["workspace","window"]' -m 2>/dev/null |
+  while IFS= read -r _event; do
+    get_workspaces
   done

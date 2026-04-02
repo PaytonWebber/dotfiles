@@ -1,29 +1,31 @@
 (include "widgets/workspaces.yuck")
+(include "widgets/window_title.yuck")
 (include "widgets/clock.yuck")
 (include "widgets/battery.yuck")
 (include "widgets/temps.yuck")
 (include "widgets/network.yuck")
 (include "widgets/audio.yuck")
 
-(defwidget main_bar []
+(defwidget main_bar [ws_data title_length ?show_audio ?show_temps]
   (centerbox :orientation "h" :class "bar"
-    (box :class "left" 
-         :halign "start" 
-         :hexpand false 
+    (box :class "left"
+         :halign "start"
+         :hexpand false
          :vexpand false
-      (audio))
-    (box :class "center" 
-         :halign "start" 
-         :hexpand false 
+      (window_title :max_length title_length))
+    (box :class "center"
+         :halign "center"
+         :hexpand false
          :vexpand false
-      (workspaces))
-    (box :class "right" 
-         :halign "end" 
-         :hexpand false 
+      (workspaces :data ws_data))
+    (box :class "right"
+         :halign "end"
+         :hexpand false
          :vexpand false
          :spacing 1
          :space-evenly false
-      (temps)
+      (box :visible {show_audio ?: false} (audio))
+      (box :visible {show_temps ?: false} (temps))
       (network)
       (clock)
       (battery))

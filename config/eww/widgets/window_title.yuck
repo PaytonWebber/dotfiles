@@ -1,0 +1,10 @@
+(deflisten window_title :initial "" "bash ~/.config/eww/scripts/get-window-title.sh")
+
+(defwidget window_title [max_length]
+  (box :class "module window-title"
+       :orientation "h"
+       :halign "start"
+       :visible {window_title != ""}
+    (label :text window_title
+           :limit-width max_length
+           :tooltip window_title)))

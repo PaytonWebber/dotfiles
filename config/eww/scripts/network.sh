@@ -26,8 +26,7 @@ get_network_info() {
 # Initial output
 get_network_info
 
-# Monitor for changes every 5 seconds
-while true; do
-  sleep 5
+# React to network events instead of polling
+nmcli monitor | while IFS= read -r _; do
   get_network_info
 done

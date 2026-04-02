@@ -1,7 +1,7 @@
 (defwidget battery []
   (box :class "module" :orientation "h"
   (label
-      :class "battery"
+      :class "battery ${EWW_BATTERY.BAT1.capacity <= 20 ? 'battery-low' : EWW_BATTERY.BAT1.capacity <= 50 ? 'battery-mid' : 'battery-full'}"
       :text "${EWW_BATTERY.BAT1.capacity}% ${EWW_BATTERY.BAT1.status == "Charging" 
                  ? '󰂄' 
                  : (EWW_BATTERY.BAT1.capacity > 80.0 

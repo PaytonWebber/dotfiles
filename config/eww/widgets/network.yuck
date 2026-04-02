@@ -15,4 +15,5 @@
                    : '󰤭'}")
     (label :class "net-signal"
            :visible "${network_info.connected}"
-           :text "${network_info.signal}%")))
+           :limit-width 12
+           :text "${network_info.ssid}")))

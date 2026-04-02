@@ -1,12 +1,11 @@
 (defpoll time :interval "15s"
-              :initial ""  ; optional, defaults to poll at startup
-              :run-while time-visible   ; optional, defaults to 'true'
+              :initial ""
+              :run-while time-visible
   `date +"%-I:%M %p"`)
+(defpoll date_short :interval "60s"
+                    :initial ""
+  `date +"%b %-d"`)
 (defwidget clock []
-  (box :class "module" :orientation "h"
-    (label
-      :class "clock"
-      :text time
-    )
-  )
-)
+  (box :class "module" :orientation "h" :space-evenly false :spacing 6
+    (label :class "clock-date" :text date_short)
+    (label :class "clock" :text time)))

@@ -1,0 +1,208 @@
+# Sway config — migrated from Hyprland
+
+# --- Startup ---
+exec sh ~/scripts/sway-start.sh
+
+# --- Variables ---
+set $mod Mod4
+set $terminal kitty
+set $fileManager nautilus
+set $menu fuzzel
+set $browser firefox
+
+# --- Output ---
+output * bg /home/payton/wallpapers/painting.png fill
+output DP-4 scale 1.5 position 1440 0
+output eDP-1 position 0 0
+
+# --- Input ---
+input type:keyboard {
+    xkb_layout us
+    xkb_options caps:escape
+}
+
+input type:touchpad {
+    natural_scroll enabled
+    tap enabled
+    dwt enabled
+}
+
+# --- Behavior ---
+focus_follows_mouse yes
+mouse_warping container
+focus_on_window_activation smart
+
+# --- Appearance ---
+default_border pixel 1
+default_floating_border pixel 1
+
+gaps inner 2
+gaps outer 2
+
+client.focused #ffbd5e #ffbd5e #282828 #ffbd5e #ffbd5e
+client.focused_inactive #282828 #282828 #a89984 #282828 #282828
+client.unfocused #282828 #282828 #665c54 #282828 #282828
+client.urgent #fb4934 #fb4934 #282828 #fb4934 #fb4934
+
+# --- Layout ---
+workspace_layout tabbed
+
+# --- Idle & Lock ---
+exec swayidle -w \
+    timeout 150 'light -O && light -S 10' resume 'light -I' \
+    timeout 300 'swaylock -f' \
+    timeout 330 'swaymsg "output * power off"' resume 'swaymsg "output * power on" && brightnessctl -r' \
+    timeout 1800 'systemctl suspend' \
+    before-sleep 'swaylock -f'
+
+# --- Clipboard History ---
+exec wl-paste --watch cliphist store
+
+# --- Window Rules ---
+
+# Generic: float dialogs and popups
+for_window [window_role="dialog"] floating enable
+for_window [window_role="pop-up"] floating enable
+for_window [window_type="dialog"] floating enable
+for_window [window_type="popup_menu"] floating enable
+
+# Inhibit idle when any window is fullscreen
+for_window [class=".*"] inhibit_idle fullscreen
+for_window [app_id=".*"] inhibit_idle fullscreen
+
+# Nautilus file dialogs
+for_window [app_id="nautilus" title="(File|Folder) (Operation|Properties).*"] floating enable
+for_window [app_id="org.gnome.Nautilus" title="(File|Folder) (Operation|Properties).*"] floating enable
+
+# GNOME utilities
+for_window [app_id="org.gnome.Calculator"] floating enable
+for_window [app_id="gnome-calculator"] floating enable
+for_window [app_id="org.gnome.Loupe"] floating enable
+for_window [app_id="org.gnome.TextEditor" title="Preferences"] floating enable
+
+# mpv
+for_window [app_id="mpv"] floating enable, resize set 960 540
+
+# LibreOffice dialogs
+for_window [app_id="libreoffice-.*" title="(?i)(find|replace|preferences|options|print|export|properties)"] floating enable
+
+# GNOME Boxes
+for_window [app_id="org.gnome.Boxes" title="Properties"] floating enable
+
+# Firefox/Chromium popups
+for_window [app_id="firefox" title="^(Library|About Mozilla Firefox|Page Info)$"] floating enable
+for_window [app_id="chromium-browser" title="^(Task Manager|DevTools)$"] floating enable
+
+# Discord (flatpak)
+for_window [title="^Discord Updater$"] floating enable
+
+# --- Key Bindings ---
+
+# Volume
+bindsym XF86AudioRaiseVolume exec ~/scripts/volume.sh up
+bindsym XF86AudioLowerVolume exec ~/scripts/volume.sh down
+bindsym XF86AudioMute exec ~/scripts/volume.sh mute
+
+# Brightness
+bindsym XF86MonBrightnessUp exec ~/scripts/brightness.sh up
+bindsym XF86MonBrightnessDown exec ~/scripts/brightness.sh down
+
+# Screenshots
+bindsym Print exec grim - | tee ~/Pictures/Screenshots/$(date +%Y-%m-%d_%H-%M-%S).png | wl-copy && notify-send -t 2000 "Screenshot" "Fullscreen saved & copied"
+bindsym $mod+Print exec grim -g "$(slurp)" - | tee ~/Pictures/Screenshots/$(date +%Y-%m-%d_%H-%M-%S).png | wl-copy && notify-send -t 2000 "Screenshot" "Region saved & copied"
+
+# App launchers
+bindsym $mod+q exec $terminal
+bindsym $mod+e exec $browser
+bindsym $mod+Return exec $menu
+bindsym $mod+s exec /home/payton/scripts/search.sh search
+
+# Window management
+bindsym $mod+c kill
+bindsym $mod+v floating toggle
+bindsym $mod+f fullscreen toggle
+bindsym $mod+t layout toggle tabbed splith
+
+# Window switcher
+bindsym $mod+w exec ~/scripts/window-switcher.sh
+bindsym $mod+Shift+w exec ~/scripts/firefox-switcher.sh
+
+# Clipboard history
+bindsym $mod+Shift+v exec cliphist list | fuzzel -d -p "Clipboard: " | cliphist decode | wl-copy
+
+# Focus movement (vim-style)
+bindsym $mod+h focus left
+bindsym $mod+l focus right
+bindsym $mod+j focus up
+bindsym $mod+k focus down
+
+# Move windows
+bindsym $mod+Shift+h move left
+bindsym $mod+Shift+l move right
+bindsym $mod+Shift+j move up
+bindsym $mod+Shift+k move down
+
+# Focus output
+bindsym $mod+comma focus output left
+bindsym $mod+period focus output right
+
+# Mouse bindings
+floating_modifier $mod normal
+
+# Bind workspace ranges to outputs
+workspace 1 output eDP-1
+workspace 2 output eDP-1
+workspace 3 output eDP-1
+workspace 4 output eDP-1
+workspace 5 output eDP-1
+workspace 6 output DP-4
+workspace 7 output DP-4
+workspace 8 output DP-4
+workspace 9 output DP-4
+workspace 10 output DP-4
+
+# Laptop workspaces (1-5)
+bindsym $mod+1 workspace number 1
+bindsym $mod+2 workspace number 2
+bindsym $mod+3 workspace number 3
+bindsym $mod+4 workspace number 4
+bindsym $mod+5 workspace number 5
+
+bindsym $mod+Shift+1 move container to workspace number 1
+bindsym $mod+Shift+2 move container to workspace number 2
+bindsym $mod+Shift+3 move container to workspace number 3
+bindsym $mod+Shift+4 move container to workspace number 4
+bindsym $mod+Shift+5 move container to workspace number 5
+
+# External monitor workspaces (6-10)
+bindsym $mod+6 workspace number 6
+bindsym $mod+7 workspace number 7
+bindsym $mod+8 workspace number 8
+bindsym $mod+9 workspace number 9
+bindsym $mod+0 workspace number 10
+
+bindsym $mod+Shift+6 move container to workspace number 6
+bindsym $mod+Shift+7 move container to workspace number 7
+bindsym $mod+Shift+8 move container to workspace number 8
+bindsym $mod+Shift+9 move container to workspace number 9
+bindsym $mod+Shift+0 move container to workspace number 10
+
+# Scratchpad (equivalent to Hyprland special workspace)
+bindsym $mod+Tab scratchpad show
+bindsym $mod+Shift+Tab move scratchpad
+
+# --- Resize Mode ---
+mode "resize" {
+    bindsym h resize shrink width 30px
+    bindsym l resize grow width 30px
+    bindsym j resize grow height 30px
+    bindsym k resize shrink height 30px
+    bindsym Escape mode "default"
+    bindsym Return mode "default"
+}
+bindsym $mod+r mode "resize"
+
+# --- Environment ---
+exec dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP=sway
+
+include /etc/sway/config.d/*
