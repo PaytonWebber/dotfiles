@@ -12,6 +12,7 @@ border-radius=5
 border-color=#585858
 background-color=#282828FF
 text-color=#ebdbb2FF
+progress-color=over #ffbd5eFF
 default-timeout=20000
 
 # Low urgency notifications
