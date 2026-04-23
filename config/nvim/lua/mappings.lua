@@ -23,6 +23,22 @@ vim.keymap.set("n", "gr", builtin.lsp_references, {})
 -- Neotree
 vim.keymap.set("n", "<leader>e", "<Cmd>Neotree toggle<CR>")
 
+-- DAP (debugging)
+local dap_ok, dap = pcall(require, "dap")
+if dap_ok then
+    vim.keymap.set("n", "<leader>db", dap.toggle_breakpoint, { desc = "DAP: Toggle Breakpoint" })
+    vim.keymap.set("n", "<leader>dB", function()
+        dap.set_breakpoint(vim.fn.input("Breakpoint condition: "))
+    end, { desc = "DAP: Conditional Breakpoint" })
+    vim.keymap.set("n", "<leader>dc", dap.continue, { desc = "DAP: Continue" })
+    vim.keymap.set("n", "<leader>di", dap.step_into, { desc = "DAP: Step Into" })
+    vim.keymap.set("n", "<leader>do", dap.step_over, { desc = "DAP: Step Over" })
+    vim.keymap.set("n", "<leader>dO", dap.step_out, { desc = "DAP: Step Out" })
+    vim.keymap.set("n", "<leader>dr", dap.repl.open, { desc = "DAP: Open REPL" })
+    vim.keymap.set("n", "<leader>dq", dap.terminate, { desc = "DAP: Terminate" })
+    vim.keymap.set("n", "<leader>du", function() require("dapui").toggle() end, { desc = "DAP: Toggle UI" })
+end
+
 -- Harpoon
 local harpoon = require("harpoon")
 vim.keymap.set("n", "<leader>m", function() harpoon:list():add() end)

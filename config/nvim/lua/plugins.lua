@@ -17,16 +17,51 @@ require("lazy").setup({
 
     ---------------------- THEMES -----------------------
 
+    -- Rose Pine
+    {
+        "rose-pine/neovim",
+        name = "rose-pine",
+        lazy = false,
+        priority = 1000,
+        config = function()
+            require("rose-pine").setup({ variant = "moon" })
+            vim.cmd("colorscheme rose-pine")
+        end,
+    },
+
+    -- Everforest
+    {
+        "sainnhe/everforest",
+        lazy = true,
+        priority = 999,
+    },
+
+    -- Catppuccin
+    {
+        "catppuccin/nvim",
+        name = "catppuccin",
+        lazy = true,
+        priority = 999,
+        config = function()
+            require("catppuccin").setup({ flavour = "mocha" })
+        end,
+    },
+
+    -- Gruvbox
+    {
+        "ellisonleao/gruvbox.nvim",
+        lazy = true,
+        priority = 999,
+    },
+
     -- Github
     {
         "projekt0n/github-nvim-theme",
         name = "github-theme",
-        lazy = false,
-        priority = 1000,
+        lazy = true,
+        priority = 999,
         config = function()
             require("github-theme").setup({})
-
-            vim.cmd("colorscheme github_dark_default")
         end,
     },
 
@@ -66,7 +101,22 @@ require("lazy").setup({
         },
         opts = {
             servers = {
-                clangd = {},
+                clangd = {
+                    cmd = {
+                        "clangd",
+                        "--background-index",
+                        "--clang-tidy",
+                        "--header-insertion=iwyu",
+                        "--completion-style=detailed",
+                        "--function-arg-placeholders",
+                        "--fallback-style=llvm",
+                    },
+                    init_options = {
+                        usePlaceholders = true,
+                        completeUnimported = true,
+                        clangdFileStatus = true,
+                    },
+                },
                 dartls = {},
                 lua_ls = {},
                 rust_analyzer = {},
@@ -90,8 +140,18 @@ require("lazy").setup({
         lazy = false,   -- This plugin is already lazy
     },
 
-    -- Debug Adapter Protocol (DAP) for Rust LSP
-    { "mfussenegger/nvim-dap" },
+    -- Debug Adapter Protocol (DAP)
+    {
+        "mfussenegger/nvim-dap",
+        dependencies = {
+            "rcarriga/nvim-dap-ui",
+            "nvim-neotest/nvim-nio",
+            "theHamsta/nvim-dap-virtual-text",
+        },
+        config = function()
+            require("config.dap")
+        end,
+    },
 
     -- Treesitter
     {
@@ -218,20 +278,6 @@ require("lazy").setup({
                 word_diff = false,
                 current_line_blame = false,
                 on_attach = function() end, -- no extra keymaps
-            })
-        end,
-    },
-
-    -- AI code completion (Supermaven)
-    {
-        "supermaven-inc/supermaven-nvim",
-        config = function()
-            require("supermaven-nvim").setup({
-                keymaps = {
-                    accept_suggestion = "<Tab>",
-                    clear_suggestion = "<C-]>",
-                    accept_word = "<C-j>",
-                },
             })
         end,
     },
