@@ -19,6 +19,8 @@ vim.keymap.set("n", "<leader>d", builtin.diagnostics, {})
 vim.keymap.set("n", "<leader>r", vim.lsp.buf.rename, {})
 vim.keymap.set("n", "<leader>a", vim.lsp.buf.code_action, {})
 vim.keymap.set("n", "gr", builtin.lsp_references, {})
+vim.keymap.set("n", "gd", vim.lsp.buf.definition, {})
+vim.keymap.set("n", "gD", vim.lsp.buf.type_definition, {})
 
 -- Neotree
 vim.keymap.set("n", "<leader>e", "<Cmd>Neotree toggle<CR>")
