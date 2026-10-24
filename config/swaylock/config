@@ -1,0 +1,42 @@
+image=/home/payton/wallpapers/painting.png
+font=JetBrains Mono
+
+# Ring colors (matching your hyprlock #ffbd5e accent)
+ring-color=ffbd5eee
+ring-ver-color=00ff99ee
+ring-wrong-color=ff6633ee
+ring-clear-color=ffbd5e88
+
+# Key highlight
+key-hl-color=ffbd5e
+bs-hl-color=ff6633
+
+# Inside colors (transparent like your hyprlock)
+inside-color=00000000
+inside-ver-color=00000000
+inside-wrong-color=00000000
+inside-clear-color=00000000
+
+# Line (border between inside and ring)
+line-color=00000000
+line-ver-color=00000000
+line-wrong-color=00000000
+line-clear-color=00000000
+
+# Separator
+separator-color=00000000
+
+# Text
+text-color=8f8f8f
+text-ver-color=00ff99ee
+text-wrong-color=ff6633ee
+text-clear-color=ffbd5eee
+
+# Layout
+indicator-radius=100
+indicator-thickness=7
+
+# Behavior
+daemonize
+show-failed-attempts
+ignore-empty-password

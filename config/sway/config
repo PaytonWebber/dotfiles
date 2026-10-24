@@ -2,6 +2,7 @@
 
 # --- Startup ---
 exec sh ~/scripts/sway-start.sh
+exec udiskie
 
 # --- Variables ---
 set $mod Mod4
@@ -12,7 +13,7 @@ set $browser firefox
 
 # --- Output ---
 output * bg /home/payton/wallpapers/painting.png fill
-output DP-4 scale 1.5 position 1440 0
+output DP-4 position 1440 0
 output eDP-1 position 0 0
 
 # --- Input ---
