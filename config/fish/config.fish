@@ -32,13 +32,16 @@ set -gx PATH $HOME/go/bin $PATH
 set -gx PATH $HOME/.fly/bin/ $PATH
 
 set -gx PATH "/home/payton/.local/bin" $PATH
-set -gx PATH "/home/payton/build/zig-x86_64-linux-0.16.0-dev.2676+4e2cec265/" $PATH
+set -gx PATH "/home/payton/build/zig-x86_64-linux-0.16.0/" $PATH
 # pnpm end
 abbr -a fs fsearch
 abbr -a gs gsearch
 
 set -gx EDITOR nvim
 set -gx CHROME_EXECUTABLE /usr/bin/chromium-browser
+
+set -gx PLAYDATE_SDK_PATH $HOME/sdk/PlaydateSDK-3.0.6
+set -g PATH "$PATH:$HOME/sdk/PlaydateSDK-3.0.6/bin"
 
 # ESP toolchain
 set -gx LIBCLANG_PATH "/home/payton/.rustup/toolchains/esp/xtensa-esp32-elf-clang/esp-20.1.1_20250829/esp-clang/lib"

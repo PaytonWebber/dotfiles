@@ -29,12 +29,12 @@ vim.opt.scrolloff = 26
 vim.cmd([[autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o]])
 
 -- clangd expects 2-space indentation for C/C++ files
-vim.api.nvim_create_autocmd("FileType", {
-    pattern = { "c", "cpp", "objc", "objcpp" },
-    callback = function()
-        vim.bo.tabstop = 2
-        vim.bo.softtabstop = 2
-        vim.bo.shiftwidth = 2
-        vim.bo.expandtab = true
-    end,
-})
+--vim.api.nvim_create_autocmd("FileType", {
+--    pattern = { "c", "cpp", "objc", "objcpp" },
+--    callback = function()
+--        vim.bo.tabstop = 2
+--        vim.bo.softtabstop = 2
+--        vim.bo.shiftwidth = 2
+--        vim.bo.expandtab = true
+--    end,
+--})

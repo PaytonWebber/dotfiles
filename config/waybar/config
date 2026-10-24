@@ -3,7 +3,7 @@
     "position": "top",
     "spacing": 5,
     "modules-left": [
-        "hyprland/workspaces"
+        "sway/workspaces"
     ],
     "modules-center": [
         "clock"
@@ -15,7 +15,7 @@
         "network",
         "battery",
     ],
-    "hyprland/workspaces": {
+    "sway/workspaces": {
         "on-click": "activate",
         "format": "{icon}",
         "format-icons": {

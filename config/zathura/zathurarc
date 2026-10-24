@@ -21,10 +21,10 @@ set completion-highlight-bg     "rgba(131,165,152,1)"  # bright:blue
 set completion-highlight-fg     "rgba(80,73,69,1)"     # bg2
 
 # Define the color in index mode
-set index-bg                    "rgba(80,73,69,1)"     # bg2
-set index-fg                    "rgba(235,219,178,1)"  # fg
-set index-active-bg             "rgba(131,165,152,1)"  # bright:blue
-set index-active-fg             "rgba(80,73,69,1)"     # bg2
+#set index-bg                    "rgba(80,73,69,1)"     # bg2
+#set index-fg                    "rgba(235,219,178,1)"  # fg
+#set index-active-bg             "rgba(131,165,152,1)"  # bright:blue
+#set index-active-fg             "rgba(80,73,69,1)"     # bg2
 
 set inputbar-bg                 "rgba(29,32,33,1)"     # bg
 set inputbar-fg                 "rgba(235,219,178,1)"  # fg

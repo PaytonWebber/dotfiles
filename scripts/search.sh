@@ -2,25 +2,13 @@
 
 set -euo pipefail
 
-NIX_CHANNEL="25.05"
+NIX_CHANNEL="unstable"
 
 find_browser() {
-    local browser_priority=("firefox")
-    
-    # Get window list and parse JSON
-    local windows
-    windows=$(hyprctl clients -j)
-    
-    # Find browser windows
-    for browser in "${browser_priority[@]}"; do
-        local window_address
-        window_address=$(echo "$windows" | jq -r ".[] | select(.class | test(\"$browser\"; \"i\")) | .address" | head -n1)
-        
-        if [[ -n "$window_address" ]]; then
-            echo "$window_address"
-            return 0
-        fi
-    done
+    swaymsg -t get_tree | jq -r '
+        recurse(.nodes[]?, .floating_nodes[]?)
+        | select(.app_id == "org.mozilla.firefox")
+        | .id' | head -n1
 }
 
 on_search() {
@@ -52,12 +40,11 @@ on_search() {
         url="https://www.google.com/search?q=${fuzzel_input}"
     fi
     
-    local browser_address
-    browser_address=$(find_browser)
-    
-    # Focus browser and open URL
-    if [[ -n "$browser_address" ]]; then
-        hyprctl dispatch focuswindow "address:${browser_address}" &
+    local browser_id
+    browser_id=$(find_browser)
+
+    if [[ -n "$browser_id" ]]; then
+        swaymsg "[con_id=$browser_id] focus" > /dev/null &
     fi
     xdg-open "$url" &
     wait

@@ -1,4 +1,4 @@
-"hyprland/workspaces": {
+"sway/workspaces": {
     "on-click": "activate",
     "format": "{icon}",
     "format-icons": {

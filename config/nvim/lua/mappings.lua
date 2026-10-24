@@ -2,8 +2,6 @@
 vim.g.mapleader = " "
 vim.keymap.set("n", "<leader>h", ":nohlsearch<CR>", { noremap = true, silent = true })
 vim.keymap.set("v", "<leader>y", '"+y', { noremap = true, silent = true })
-vim.keymap.set("n", "<C-u>", "<C-u>zz", { noremap = true, silent = true })
-vim.keymap.set("n", "<C-d>", "<C-d>zz", { noremap = true, silent = true })
 
 -- Telescope
 local builtin = require("telescope.builtin")
@@ -21,6 +19,26 @@ vim.keymap.set("n", "<leader>a", vim.lsp.buf.code_action, {})
 vim.keymap.set("n", "gr", builtin.lsp_references, {})
 vim.keymap.set("n", "gd", vim.lsp.buf.definition, {})
 vim.keymap.set("n", "gD", vim.lsp.buf.type_definition, {})
+
+-- Trouble
+vim.keymap.set(
+    "n",
+    "<leader>xx",
+    "<Cmd>Trouble diagnostics toggle<CR>",
+    { desc = "Trouble: Workspace diagnostics" }
+)
+vim.keymap.set(
+    "n",
+    "<leader>xX",
+    "<Cmd>Trouble diagnostics toggle filter.buf=0<CR>",
+    { desc = "Trouble: Buffer diagnostics" }
+)
+vim.keymap.set(
+    "n",
+    "<leader>xs",
+    "<Cmd>Trouble symbols toggle focus=false<CR>",
+    { desc = "Trouble: Document symbols" }
+)
 
 -- Neotree
 vim.keymap.set("n", "<leader>e", "<Cmd>Neotree toggle<CR>")
@@ -54,3 +72,39 @@ vim.keymap.set("n", "<leader>4", function() harpoon:list():select(4) end)
 -- Toggle previous & next buffers stored within Harpoon list
 -- vim.keymap.set("n", "<C-S-P>", function() harpoon:list():prev() end)
 -- vim.keymap.set("n", "<C-S-N>", function() harpoon:list():next() end)
+
+-- Attune
+vim.keymap.set(
+    { "n", "x" },
+    "<leader>cp",
+    "<Plug>(AttunePrompt)",
+    { desc = "Attune: Prompt" }
+)
+
+vim.keymap.set(
+    "n",
+    "<leader>co",
+    "<Cmd>AttuneOpen<CR>",
+    { desc = "Attune: Open chat" }
+)
+
+vim.keymap.set(
+    "n",
+    "<leader>cc",
+    "<Cmd>AttuneContext<CR>",
+    { desc = "Attune: Inspect context" }
+)
+
+vim.keymap.set(
+    "n",
+    "<leader>cx",
+    "<Cmd>AttuneCancel<CR>",
+    { desc = "Attune: Cancel turn" }
+)
+
+vim.keymap.set(
+    "n",
+    "<leader>cs",
+    "<Cmd>AttuneSession<CR>",
+    { desc = "Attune: Switch session" }
+)

@@ -11,11 +11,11 @@
     "width": 1900,
     "margin-top": 10,
 
-	"modules-left": ["custom/l_end","hyprland/workspaces","custom/r_end","custom/padd"],
+	"modules-left": ["custom/l_end","sway/workspaces","custom/r_end","custom/padd"],
 	"modules-center": ["custom/padd","","custom/padd"],
 	"modules-right": ["custom/padd","custom/l_end","network","custom/r_end","custom/l_end","bluetooth","custom/r_end","custom/l_end","battery","custom/r_end","custom/l_end","clock","custom/r_end"],
 
-    "hyprland/workspaces": {
+    "sway/workspaces": {
         "on-click": "activate",
         "format": "{icon}",
         "format-icons": {

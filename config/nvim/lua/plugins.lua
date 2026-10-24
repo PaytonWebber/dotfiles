@@ -235,6 +235,8 @@ require("lazy").setup({
             },
 
             fuzzy = { implementation = "prefer_rust_with_warning" },
+
+            signature = { enabled = true },
         },
         opts_extend = { "sources.default" },
     },
@@ -267,7 +269,11 @@ require("lazy").setup({
                 },
                 dartls = {},
                 lua_ls = {},
-                rust_analyzer = {},
+                tinymist = {
+                    settings = {
+                        exportPdf = "onType",
+                    },
+                },
                 ts_ls = {},
                 zls = {},
             },
@@ -286,6 +292,14 @@ require("lazy").setup({
         "mrcjkb/rustaceanvim",
         version = "^6", -- Recommended
         lazy = false,   -- This plugin is already lazy
+        dependencies = { "saghen/blink.cmp" },
+        init = function()
+            vim.g.rustaceanvim = {
+                server = {
+                    capabilities = require("blink.cmp").get_lsp_capabilities(),
+                },
+            }
+        end,
     },
 
     -- Debug Adapter Protocol (DAP)
@@ -355,6 +369,13 @@ require("lazy").setup({
         opts = {}
     },
 
+    -- Project-wide diagnostics and symbols
+    {
+        "folke/trouble.nvim",
+        cmd = "Trouble",
+        opts = {},
+    },
+
     -- Highlighter for todo's
     {
         "folke/todo-comments.nvim",
@@ -367,6 +388,35 @@ require("lazy").setup({
         "christoomey/vim-tmux-navigator",
         event = "VeryLazy",
     },
+
+    -- Smooth scrolling
+    {
+        "karb94/neoscroll.nvim",
+        opts = {
+            mappings = {
+                "<C-u>", "<C-d>",
+                "<C-b>", "<C-f>",
+                "<C-y>",
+                "zt", "zz", "zb",
+            },
+            easing = "sine",
+            duration_multiplier = 0.7,
+        },
+    },
+
+    -- Fast, smoothly animated cursor movement
+--    {
+--        "sphamba/smear-cursor.nvim",
+--        opts = {
+--            stiffness = 0.8,
+--            trailing_stiffness = 0.6,
+--            stiffness_insert_mode = 0.7,
+--            trailing_stiffness_insert_mode = 0.7,
+--            damping = 0.95,
+--            damping_insert_mode = 0.95,
+--            distance_stop_animating = 0.5,
+--        },
+--    },
 
     -- Show indentation levels
     -- {
@@ -436,5 +486,33 @@ require("lazy").setup({
         event = "InsertEnter",
         config = true,
         opts = {}
+    },
+
+    -- Context-first ACP client
+    {
+        dir = "/home/payton/Projects/attune",
+        name = "attune.nvim",
+        lazy = false,
+        config = function()
+            require("attune").setup({
+                default_agent = "codex",
+                agents = {
+                    codex = {
+                        command = {
+                            "npx",
+                            "-y",
+                            "@agentclientprotocol/codex-acp",
+                        },
+                        env = {
+                            INITIAL_AGENT_MODE = "read-only",
+                        },
+                        mcp_servers = {},
+                    },
+                },
+                permissions = {
+                    mode = "observe",
+                },
+            })
+        end,
     },
 })
